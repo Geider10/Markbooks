@@ -1,11 +1,13 @@
-
-export const Home = ()=>{
+function Home (){
     return(
         <>
-        {/* List category => category
+        {
+        /* Titulo
+        List category => category
         List Paginas => pagina
         */}
 
         </>
     )
 }
+export default Home;
