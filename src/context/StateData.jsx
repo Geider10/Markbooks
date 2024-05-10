@@ -4,7 +4,7 @@ import { useState } from "react";
 function StateData ({children}){
     const [idTag, setIdTag] = useState(1);
     const [tags, setTags] = useState([{id: 0, name:"General"}]);
-    const handleAddTag = (tag)=>{
+    const postTag = (tag)=>{
         const newTag = {
             id:idTag,
             name: tag
@@ -13,8 +13,23 @@ function StateData ({children}){
         setTags([...tags, newTag ])
         console.log(tags);
     }
+    const putTag = (pId,value)=>{
+        const newTags = tags.map( tag => {
+            if(tag.id === pId){
+                return {
+                    ...tag,
+                    name: value
+                }
+            }
+            return tag
+        })
+    }
+    const deleteTag = (pId)=>{
+        const newTags= tags.filter(tag => tag.id !== pId);
+        setTags(newTags);
+    }
     return(
-        <dataContext.Provider value={{tags, handleAddTag}}>
+        <dataContext.Provider value={{tags, postTag}}>
            {children}
         </dataContext.Provider>
     )

@@ -1,4 +1,4 @@
-function Button ({name,click,style}) {
-    return <button onClick={click} className={`rounded-md p-1 ${style}`}>{name}</button>
+function Button ({name,click,style, read}) {
+    return <button onClick={click} className={`rounded-md p-1 ${style}`} disabled={read}>{name}</button>
 }
 export default Button;
