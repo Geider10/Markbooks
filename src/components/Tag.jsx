@@ -1,4 +1,4 @@
-function Tag ({name}){
-    return <span>{name}</span>
+function Tag ({name,event}){
+    return <span onClick={event} >{name}</span>
 }
 export default Tag;
