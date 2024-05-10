@@ -1,16 +1,20 @@
 import { BrowserRouter ,Routes, Route  } from "react-router-dom";
+import StateData from "./context/StateData";
+import Header from "./components/Header";
 import Home from "./components/Home"
 import Board from "./components/Board"
-import Header from "./components/Header";
+
 function App (){
     return(
-        <BrowserRouter>
-        <Header></Header>
+        <StateData>
+            <BrowserRouter>
+            <Header></Header>
             <Routes>
                 <Route path="/" element={<Home/>}></Route>
                 <Route path="/Board" element={<Board/>}></Route>
             </Routes>
-        </BrowserRouter>
+            </BrowserRouter>
+        </StateData>
     )
 }
 export default App
