@@ -2,6 +2,7 @@ import { dataContext } from "./dataContext";
 import { useState } from "react";
 
 function StateData ({children}){
+    //tags
     const [idTag, setIdTag] = useState(1);
     const [tags, setTags] = useState([{id: 0, name:"General"}]);
     const postTag = (tag)=>{
@@ -27,8 +28,23 @@ function StateData ({children}){
         const newTags= tags.filter(tag => tag.id != pId);
         setTags(newTags);
     }
+    //paginas
+    const [idLink, setIdLink] = useState(1);
+    const [links, setLinks] = useState([]);
+    const postLink = (link,url,category)=>{
+        const newLink = {
+            id: idLink,
+            name: link,
+            url: url,
+            category: category
+        }
+        setIdLink(idLink + 1);
+        setLinks([...links,newLink]);
+        console.log(newLink);
+        console.log(links);
+    }
     return(
-        <dataContext.Provider value={{tags, postTag,putTag,deleteTag}}>
+        <dataContext.Provider value={{tags, postTag,putTag,deleteTag,postLink}}>
            {children}
         </dataContext.Provider>
     )

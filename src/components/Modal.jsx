@@ -1,5 +1,5 @@
 import Button from "./Button";
-function Modal({ name, children, text, submit, close, change, btnName, url }) {
+function Modal({ name, children, text, submit, close, change, btnName, url, changeUrl}) {
     return (
         <article className="modalCenter">
             <form onSubmit={(e) => e.preventDefault()} className="w-80 border p-2">
@@ -18,6 +18,7 @@ function Modal({ name, children, text, submit, close, change, btnName, url }) {
                     <input
                         type="text"
                         placeholder="Ingresa la url:"
+                        onChange={changeUrl}
                         className="inputText"
                     />
                     }
