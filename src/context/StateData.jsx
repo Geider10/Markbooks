@@ -11,25 +11,24 @@ function StateData ({children}){
         }
         setIdTag(idTag + 1);
         setTags([...tags, newTag ])
-        console.log(tags);
     }
     const putTag = (pId,value)=>{
-        const newTags = tags.map( tag => {
-            if(tag.id === pId){
-                return {
-                    ...tag,
-                    name: value
-                }
+        // const newTags = tags.find( tag => tag.id == pId)
+        // newTags.name = value;
+        const newTags = tags.map( (tag) =>{
+            if(tag.id == pId){
+                // console.log(tag);
+                tag.name = value;
+                console.log(tag.name);
             }
-            return tag
         })
     }
     const deleteTag = (pId)=>{
-        const newTags= tags.filter(tag => tag.id !== pId);
+        const newTags= tags.filter(tag => tag.id != pId);
         setTags(newTags);
     }
     return(
-        <dataContext.Provider value={{tags, postTag}}>
+        <dataContext.Provider value={{tags, postTag,putTag,deleteTag}}>
            {children}
         </dataContext.Provider>
     )
