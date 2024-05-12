@@ -16,7 +16,7 @@ function StateData ({children}){
     const putTag = (pId,value)=>{
         // const newTags = tags.find( tag => tag.id == pId)
         // newTags.name = value;
-        const newTags = tags.map( (tag) =>{
+        tags.map( (tag) =>{
             if(tag.id == pId){
                 // console.log(tag);
                 tag.name = value;
@@ -40,11 +40,22 @@ function StateData ({children}){
         }
         setIdLink(idLink + 1);
         setLinks([...links,newLink]);
-        console.log(newLink);
-        console.log(links);
+    }
+    const putLink=(pId,link,url,category)=>{
+        links.map(l =>{
+            if(l.id == pId){
+                l.name = link;
+                l.url = url;
+                l.category = category;
+            }
+        })
+    }
+    const deleteLink=(pId)=>{
+        const newLinks = links.filter(link =>link.id != pId);
+        setLinks(newLinks);
     }
     return(
-        <dataContext.Provider value={{tags, postTag,putTag,deleteTag,postLink}}>
+        <dataContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink}}>
            {children}
         </dataContext.Provider>
     )

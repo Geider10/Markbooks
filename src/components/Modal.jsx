@@ -1,5 +1,5 @@
 import Button from "./Button";
-function Modal({ name, children, text, submit, close, change, btnName, url, changeUrl}) {
+function Modal({ name, children, text, submit, close, change, btnName, url, nameUrl, changeUrl}) {
     return (
         <article className="modalCenter">
             <form onSubmit={(e) => e.preventDefault()} className="w-80 border p-2">
@@ -14,16 +14,17 @@ function Modal({ name, children, text, submit, close, change, btnName, url, chan
                         onChange={change}
                         placeholder="Ingresa el nombre:"
                         className="inputText" />
-                    {url&&
+                    {url &&
                     <input
                         type="text"
-                        placeholder="Ingresa la url:"
+                        value={nameUrl}
                         onChange={changeUrl}
+                        placeholder="Ingresa la url:"
                         className="inputText"
                     />
                     }
                     <div className="flex gap-2">
-                        <Button name={btnName} style="bg-blue-400" click={submit} />
+                        <Button name={btnName} style="bg-blue-400" click={submit} read={false}/>
                         {children}
                     </div>
                 </div>

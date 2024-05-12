@@ -76,7 +76,7 @@ function RenderTag (){
             </div>
             {
                 modal && 
-                <Modal  name="Etiqueta" close={handleModalOff} change={handleGetTxt} submit={handleTagEvent} text={txt} btnName={buttons?"Editar":"Crear"}>
+                <Modal  name="Etiqueta" close={handleModalOff} change={handleGetTxt} submit={handleTagEvent} text={txt} btnName={buttons?"Editar":"Crear"} url={false}>
                   {buttons && <Button name="Eiminar" style="bg-red-400" click={handleDeleteTag} read={false}/>}
                 </Modal>
             }
