@@ -24,12 +24,11 @@ function Table ({handlePutLinks}){
                         <td>{l.url}</td>
                         <td>{l.category}</td>
                         <td className="flex gap-2">
-                            <Button name={"Editar"} style={"bg-green-400"} click={handlePutLinks} read={false} pId={l.id} pValue={l.name} pUrl={l.url}/>
-                            <Button name={"Eliminar"} style={"bg-red-400"} click={handleDeleteLink} read={false} pId={l.id} pUrl={l.url}/>
+                            <Button name={"Editar"} style={"bg-green-400"} click={handlePutLinks} read={false} pId={l.id} pValue={l.name} pUrl={l.url} pCategory={l.category}/>
+                            <Button name={"Eliminar"} style={"bg-red-400"} click={handleDeleteLink} read={false} pId={l.id}/>
                         </td>
                     </tr>
                 ))
-                  
                 }
             </tbody>
         </table>

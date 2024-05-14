@@ -1,14 +1,11 @@
 import Button from "./Button";
 import Modal from "./Modal";
 import Table from "./Table";
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import { dataContext } from "../context/dataContext";
 function Board() {
-    const {tags, postLink,putLink} = useContext(dataContext);
-    const [url, setUrl] = useState("")
+    const { tags, postLink, putLink } = useContext(dataContext);
     const [modal, setModal] = useState(false);
-
-    const [copy,setCopy] = useState("");
     const handleModalOn = () => {
         setModal(true);
         setMetodo("post");
@@ -18,45 +15,38 @@ function Board() {
         setButton(false);
         setValue("");
         setUrl("");
+        setMetodo("");
     }
 
     const [value, setValue] = useState("")
     const [button, setButton] = useState(false);
     const [metodo, setMetodo] = useState("");
     const [id, setId] = useState(1);
-    // const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("General");
+    const [url, setUrl] = useState("")
     const handleGetValue = (e) => {
         setValue(e.target.value);
-        console.log(value);
     }
     const handleGetUrl = (e) => {
         setUrl(e.target.value);
-        console.log(url);
     }
-    const handleCategory = () => {
-        // setCategory(e.target.innerText);
-        // const cate = e.target;
-        // console.log("cate: "+cate);
+    const handleCategory = (e) => {
+        setCategory(e.target.value);
     }
     const handleEventLink = () => {
         const typeMetodo = metodo;
-        if (typeMetodo == "post") {
-            postLink(value, url, "General");
-            
-            setCopy(url);
-            console.log("modo-post")
-            const cop = copy;
-            console.log(cop);
+        if (typeMetodo == "post" && value !== "" && url !== "") {
+            postLink(value, url, category);
             handleModalOff();
-           
         }
         else if (typeMetodo == "put") {
-            putLink(id,value,url,"Cursos");
+            putLink(id, value, url, category);
             handleModalOff();
-            console.log("modo-put id:", id);
+            console.log("post")
         }
-        setValue("");
-        setUrl("");
+        // handleModalOff();
+        console.log("finish")
+
     }
     const handlePutLink = (e) => {
         const pid = e.target.id;
@@ -65,22 +55,20 @@ function Board() {
         setId(e.target.id);
         setValue(e.target.value);
         setUrl(e.target.url);
+        const cate = e;
+        console.log(cate);
         setMetodo("put");
         setModal(true);
         setButton(true);
-        
-        console.log("modo-put id:", pid)
-        console.log("modo-put name:", pname)
-        console.log("modo-put url:", pp)
     }
     return (
         <>
             <Button name="Agregar" click={handleModalOn} style="bg-green-400" read={false} />
             {modal &&
-                <Modal url={true} name="Pagina" btnName={button?"Editar":"Crear"} text={value}  nameUrl={url} change={handleGetValue} changeUrl={handleGetUrl} close={handleModalOff} submit={handleEventLink}>
-                    <select>
+                <Modal url={true} name="Pagina" btnName={button ? "Editar" : "Crear"} text={value} nameUrl={url} change={handleGetValue} changeUrl={handleGetUrl} close={handleModalOff} submit={handleEventLink}>
+                    <select onChange={handleCategory}>
                         {tags && tags.map(t => (
-                            <option key={t.id}>{t.name}</option>
+                            <option key={t.id} value={t.name}>{t.name}</option>
                         ))}
                     </select>
                 </Modal>}

@@ -29,15 +29,15 @@ function RenderTag (){
     }
     const handleTagEvent=()=>{
         let typeMetod = metodo;
-        console.log("Tipo de metodo: "+typeMetod);
-        if(typeMetod == "post"){
+        // console.log("Tipo de metodo: "+typeMetod);
+        if(typeMetod == "post" && txt !== ""){
             postTag(txt);
             setModal(false);
         }
         else if(typeMetod == "put"){
             putTag(tagId,txt);
-            setModal(false);
             setButtons(false);
+            setModal(false);
 
         }
         setTxt("");
@@ -45,7 +45,8 @@ function RenderTag (){
     }
     //put &&delete
     const handleTag = (e)=>{
-        if(edit){
+        const general = e.target.innerText;
+        if(edit && general != "General"){
             setTxt(e.target.innerText);
             setTagId(e.target.id);  
             setMetodo("put");
@@ -59,7 +60,6 @@ function RenderTag (){
             setModal(false);
             setButtons(false);
             setTxt("");
-            
         }
     }
     return (
