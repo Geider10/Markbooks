@@ -9,6 +9,7 @@ function Board() {
     const handleModalOn = () => {
         setModal(true);
         setMetodo("post");
+        setCategory("General");
     }
     const handleModalOff = () => {
         setModal(false);
@@ -16,13 +17,14 @@ function Board() {
         setValue("");
         setUrl("");
         setMetodo("");
+        setCategory("");
     }
 
     const [value, setValue] = useState("")
     const [button, setButton] = useState(false);
     const [metodo, setMetodo] = useState("");
     const [id, setId] = useState(1);
-    const [category, setCategory] = useState("General");
+    const [category, setCategory] = useState("");
     const [url, setUrl] = useState("")
     const handleGetValue = (e) => {
         setValue(e.target.value);
@@ -42,21 +44,15 @@ function Board() {
         else if (typeMetodo == "put") {
             putLink(id, value, url, category);
             handleModalOff();
-            console.log("post")
         }
-        // handleModalOff();
-        console.log("finish")
-
     }
     const handlePutLink = (e) => {
-        const pid = e.target.id;
-        const pname = e.target.value;
-        const pp = e.target.url;
         setId(e.target.id);
         setValue(e.target.value);
-        setUrl(e.target.url);
-        const cate = e;
-        console.log(cate);
+        let urlValue = e.target.attributes.url.value;
+        let categoryValue = e.target.attributes.category.value;
+        setCategory(categoryValue);
+        setUrl(urlValue);
         setMetodo("put");
         setModal(true);
         setButton(true);
@@ -66,7 +62,7 @@ function Board() {
             <Button name="Agregar" click={handleModalOn} style="bg-green-400" read={false} />
             {modal &&
                 <Modal url={true} name="Pagina" btnName={button ? "Editar" : "Crear"} text={value} nameUrl={url} change={handleGetValue} changeUrl={handleGetUrl} close={handleModalOff} submit={handleEventLink}>
-                    <select onChange={handleCategory}>
+                    <select onChange={handleCategory} value={category}>
                         {tags && tags.map(t => (
                             <option key={t.id} value={t.name}>{t.name}</option>
                         ))}

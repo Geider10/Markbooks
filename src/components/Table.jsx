@@ -5,6 +5,9 @@ function Table ({handlePutLinks}){
     const {links, deleteLink} = useContext(dataContext); 
     const handleDeleteLink=(e)=>{
         let id = e.target.id;
+        let cate = e.target.attributes.url.value;
+        console.log(id);
+        // console.log(cate);
         deleteLink(id);
     }
     return(
@@ -25,7 +28,7 @@ function Table ({handlePutLinks}){
                         <td>{l.category}</td>
                         <td className="flex gap-2">
                             <Button name={"Editar"} style={"bg-green-400"} click={handlePutLinks} read={false} pId={l.id} pValue={l.name} pUrl={l.url} pCategory={l.category}/>
-                            <Button name={"Eliminar"} style={"bg-red-400"} click={handleDeleteLink} read={false} pId={l.id}/>
+                            <Button name={"Eliminar"} style={"bg-red-400"} click={handleDeleteLink} read={false} pId={l.id} pValue={l.name} pUrl={l.url} pCategory={l.category} />
                         </td>
                     </tr>
                 ))

@@ -14,13 +14,9 @@ function StateData ({children}){
         setTags([...tags, newTag ])
     }
     const putTag = (pId,value)=>{
-        // const newTags = tags.find( tag => tag.id == pId)
-        // newTags.name = value;
         tags.map( (tag) =>{
             if(tag.id == pId){
-                // console.log(tag);
                 tag.name = value;
-                console.log(tag.name);
             }
         })
     }

@@ -38,10 +38,9 @@ function RenderTag (){
             putTag(tagId,txt);
             setButtons(false);
             setModal(false);
-
         }
         setTxt("");
-        console.log(tags);
+        // console.log(tags);
     }
     //put &&delete
     const handleTag = (e)=>{
