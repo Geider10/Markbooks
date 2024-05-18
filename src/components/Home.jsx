@@ -1,10 +1,12 @@
 import RenderTag from "./RenderTag";
+import RenderSite from "./RenderSite";
 function Home (){
     return(
         <>
         <RenderTag/>
+        <RenderSite/>
         {
-        /* Titulo
+        /* 
         List category => category
         List Paginas => pagina
         */}

@@ -4,7 +4,7 @@ import Tag from "./Tag"
 import Button from "./Button";
 import Modal from "./Modal";
 function RenderTag() {
-    const { tags, postTag, putTag, deleteTag } = useContext(FilterContext);
+    const { tags, postTag, putTag, deleteTag, filterLink} = useContext(FilterContext);
     const [edit, setEdit] = useState(false);
     const [modal, setModal] = useState(false);
     const handleEditOn = () => { setEdit(true); }
@@ -49,6 +49,11 @@ function RenderTag() {
             setMetodo("put");
             setButtons(true);
             setModal(true);
+        }
+        if(!edit){
+            const val = e.target.innerText;
+            console.log(val);
+            filterLink(val);
         }
     }
     const handleDeleteTag = () => {
