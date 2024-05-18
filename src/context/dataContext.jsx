@@ -49,7 +49,7 @@ export const  FilterProvider= ({children})=>{
     ];    
     const [idLink, setIdLink] = useState(1);
     const [links, setLinks] = useState(paginasWeb);
-    const [typeLink, setTypeLinks] = useState("");
+    const [typeLink, setTypeLinks] = useState();
     const postLink = (link,url,category)=>{
         const newLink = {
             id: idLink,
@@ -75,8 +75,7 @@ export const  FilterProvider= ({children})=>{
     }
     const filterLink = (pCategory) => {
         const newLinks = links.filter(link => link.category === pCategory);
-        // setTypeLinks(newLinks);
-        console.log(newLinks);
+        setTypeLinks(newLinks);
     }
     return(
         <FilterContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink,typeLink,filterLink}}>
