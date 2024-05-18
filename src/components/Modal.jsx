@@ -27,7 +27,7 @@ function Modal({ name, children, text, submit, close, change, btnName, url, name
                     />
                     }
                     <div className="flex gap-2">
-                        <Button name={btnName} style="bg-blue-400" click={submit} read={false}/>
+                        <Button name={btnName} style="bg-blue-400" click={submit} />
                         {children}
                     </div>
                 </div>

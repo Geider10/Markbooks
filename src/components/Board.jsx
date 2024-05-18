@@ -59,7 +59,7 @@ function Board() {
     }
     return (
         <>
-            <Button name="Agregar" click={handleModalOn} style="bg-green-400" read={false} />
+            <Button name="Agregar" click={handleModalOn} style="bg-green-400" />
             {modal &&
                 <Modal url={true} name="Pagina" btnName={button ? "Editar" : "Crear"} text={value} nameUrl={url} change={handleGetValue} changeUrl={handleGetUrl} close={handleModalOff} submit={handleEventLink}>
                     <select onChange={handleCategory} value={category}>
