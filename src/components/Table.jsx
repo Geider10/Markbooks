@@ -1,8 +1,8 @@
-import { dataContext } from "../context/dataContext";
+import { FilterContext } from "../context/dataContext";
 import { useContext} from "react";
 import Button from "./Button";
 function Table ({handlePutLinks}){
-    const {links, deleteLink} = useContext(dataContext); 
+    const {links, deleteLink} = useContext(FilterContext); 
     const handleDeleteLink=(e)=>{
         deleteLink( e.target.id);
     }

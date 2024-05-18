@@ -1,7 +1,9 @@
-import { dataContext } from "./dataContext";
-import { useState } from "react";
+import { createContext,useState } from "react";
+//Este es el que tenemos que consumir
+export const FilterContext = createContext();
 
-function StateData ({children}){
+//Este es el que nos provee de acceso al contexto
+export const  FilterProvider= ({children})=>{
     //tags
     const [idTag, setIdTag] = useState(1);
     const [tags, setTags] = useState([{id: 0, name:"General"}]);
@@ -51,9 +53,8 @@ function StateData ({children}){
         setLinks(newLinks);
     }
     return(
-        <dataContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink}}>
+        <FilterContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink}}>
            {children}
-        </dataContext.Provider>
+        </FilterContext.Provider>
     )
 }
-export default StateData;

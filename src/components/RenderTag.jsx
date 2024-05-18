@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { dataContext } from "../context/dataContext";
+import { FilterContext } from "../context/dataContext";
 import Tag from "./Tag"
 import Button from "./Button";
 import Modal from "./Modal";
 function RenderTag() {
-    const { tags, postTag, putTag, deleteTag } = useContext(dataContext);
+    const { tags, postTag, putTag, deleteTag } = useContext(FilterContext);
     const [edit, setEdit] = useState(false);
     const [modal, setModal] = useState(false);
     const handleEditOn = () => { setEdit(true); }
@@ -67,8 +67,9 @@ function RenderTag() {
                 ))}
             </div>
             <div className="flex gap-2">
-                <Button name={!edit ? "Abrir" : "Cerrar"} style="bg-blue-400" click={!edit ? handleEditOn : handleEditOff} />
                 {edit && <Button name="+" style="bg-green-400" click={handleModalOn} />}
+                <Button name={!edit ? "Abrir" : "Cerrar"} style="bg-blue-400" click={!edit ? handleEditOn : handleEditOff} />
+               
             </div>
             {
                 modal &&

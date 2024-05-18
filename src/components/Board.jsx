@@ -1,10 +1,11 @@
+import { useState, useContext } from "react";
+import { FilterContext } from "../context/dataContext";
 import Button from "./Button";
 import Modal from "./Modal";
 import Table from "./Table";
-import { useState, useContext } from "react";
-import { dataContext } from "../context/dataContext";
+
 function Board() {
-    const { tags, postLink, putLink } = useContext(dataContext);
+    const { tags, postLink, putLink } = useContext(FilterContext);
     const [modal, setModal] = useState(false);
     const handleModalOn = () => {
         setModal(true);
