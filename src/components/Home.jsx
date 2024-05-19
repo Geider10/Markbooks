@@ -5,12 +5,6 @@ function Home (){
         <>
         <RenderTag/>
         <RenderSite/>
-        {
-        /* 
-        List category => category
-        List Paginas => pagina
-        */}
-
         </>
     )
 }

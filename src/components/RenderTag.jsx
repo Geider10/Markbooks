@@ -66,7 +66,7 @@ function RenderTag() {
     }
     return (
         <section className="flex justify-between items-center mx-8">
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
                 {tags && tags.map(t => (
                     <Tag key={t.id} name={t.name} pId={t.id} click={handleTag} />
                 ))}
