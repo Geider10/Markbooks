@@ -63,7 +63,7 @@ function Board() {
             <Button name="Agregar" click={handleModalOn} style="bg-green-400" />
             {modal &&
                 <Modal url={true} name="Pagina" btnName={button ? "Editar" : "Crear"} text={value} nameUrl={url} change={handleGetValue} changeUrl={handleGetUrl} close={handleModalOff} submit={handleEventLink}>
-                    <select onChange={handleCategory} value={category}>
+                    <select onChange={handleCategory} value={category} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         {tags && tags.map(t => (
                             <option key={t.id} value={t.name}>{t.name}</option>
                         ))}
