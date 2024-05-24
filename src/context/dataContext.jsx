@@ -1,4 +1,5 @@
-import { createContext,useState } from "react";
+import { createContext,useEffect,useState } from "react";
+import { json } from "react-router-dom";
 //Este es el que tenemos que consumir
 export const FilterContext = createContext();
 
@@ -7,14 +8,14 @@ export const  FilterProvider= ({children})=>{
     const categorias = [
         {id: 0, name: "General"},
         {id: 1, name: "Video"},
-        {id: 2, name: "Red Social"},
-        {id: 3, name: "Enciclopedia"},
-        {id: 4, name: "Compras"}
+        {id: 2, name: "Red Social"}
     ];
     //tags
+    const t =  JSON.parse(window.localStorage.getItem("tags")) || [];
     const gen = [{id: 0, name:"General"}]
-    const [idTag, setIdTag] = useState(1);
-    const [tags, setTags] = useState(categorias);
+    const [tags, setTags] = useState(t);
+    const length = tags.length;
+    const [idTag, setIdTag] = useState(length);
     const postTag = (tag)=>{
         const newTag = {
             id:idTag,
@@ -22,30 +23,36 @@ export const  FilterProvider= ({children})=>{
         }
         setIdTag(idTag + 1);
         setTags([...tags, newTag ])
+        localStorage.setItem("tags",JSON.stringify([...tags, newTag ]));
     }
+
     const putTag = (pId,value)=>{
-        tags.map( (tag) =>{
+        const newTags = tags.map(tag =>{
             if(tag.id == pId){
-                tag.name = value;
+                return{
+                    ...tag,
+                    name: value
+                }
             }
+            return tag;
         })
+        console.log(newTags);
+        setTags(newTags);
+        localStorage.setItem("tags",JSON.stringify(newTags));
     }
     const deleteTag = (pId)=>{
         const newTags= tags.filter(tag => tag.id != pId);
         setTags(newTags);
+        localStorage.setItem("tags",JSON.stringify(newTags));
     }
     //paginas
     const paginasWeb = [
-        {id: 0, name: "Google", url: "https://google.com", category: "General"},
-        {id: 1, name: "YouTube", url: "https://youtube.com", category: "Video"},
-        {id: 2, name: "Facebook", url: "https://facebook.com", category: "Red Social"},
-        {id: 3, name: "Wikipedia", url: "https://wikipedia.org", category: "Enciclopedia"},
-        {id: 4, name: "Amazon", url: "https://amazon.com", category: "Compras"},
-        {id: 5, name: "Google", url: "https://google.com", category: "General"},
-        {id: 6, name: "YouTube", url: "https://youtube.com", category: "Video"},
-        {id: 7, name: "Facebook", url: "https://facebook.com", category: "Red Social"},
-        {id: 8, name: "Wikipedia", url: "https://wikipedia.org", category: "Enciclopedia"},
-        {id: 9, name: "Amazon", url: "https://amazon.com", category: "Compras"}
+        {id: 0, name: "Google", url: "https://google.com", category: "General", star: false},
+        {id: 1, name: "YouTube", url: "https://youtube.com", category: "Video", star: false},
+        {id: 3, name: "Facebook", url: "https://facebook.com", category: "Red Social", star: false},
+        {id: 4, name: "Google", url: "https://google.com", category: "General", star: false},
+        {id: 5, name: "YouTube", url: "https://youtube.com", category: "Video", star: false},
+        {id: 6, name: "Facebook", url: "https://facebook.com", category: "Red Social", star: false},
     ];    
     const [idLink, setIdLink] = useState(1);
     const [links, setLinks] = useState(paginasWeb);
@@ -77,8 +84,17 @@ export const  FilterProvider= ({children})=>{
         const newLinks = links.filter(link => link.category === pCategory);
         setTypeLinks(newLinks);
     }
+    const changeStar = (pid, value)=>{
+        links.map(link => {
+            if(link.id == pid){
+                link.star = value;
+                // console.log(link);
+            }
+        })
+        console.log(links)
+    }
     return(
-        <FilterContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink,typeLink,filterLink}}>
+        <FilterContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink,typeLink,filterLink,changeStar}}>
            {children}
         </FilterContext.Provider>
     )

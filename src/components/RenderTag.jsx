@@ -52,7 +52,6 @@ function RenderTag() {
         }
         if(!edit){
             const val = e.target.innerText;
-            console.log(val);
             filterLink(val);
         }
     }

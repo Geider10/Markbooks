@@ -1,9 +1,11 @@
 import Path from "./Path"
-function Site ({value, url,category}){
+import Star from "../icons/Star";
+function Site ({value, url,category, id}){
     return(
         <article className="w-60 text-md rounded-md border-2">
-            <div className="bg-red-400 h-16">
+            <div className="bg-red-400 h-16 flex justify-between">
                 <span>{category}</span>
+                <Star pId={id}/>
             </div>
             <div className="text-center bg-gray-600">
                 <h3>{value}</h3>
