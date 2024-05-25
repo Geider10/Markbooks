@@ -11,10 +11,9 @@ export const  FilterProvider= ({children})=>{
         {id: 2, name: "Red Social"}
     ];
     //tags
-    const t =  JSON.parse(window.localStorage.getItem("tags")) || [];
-    const gen = [{id: 0, name:"General"}]
+    const t =  JSON.parse(window.localStorage.getItem("tags")) ||  categorias;
+    const length = t.length;
     const [tags, setTags] = useState(t);
-    const length = tags.length;
     const [idTag, setIdTag] = useState(length);
     const postTag = (tag)=>{
         const newTag = {
@@ -25,7 +24,6 @@ export const  FilterProvider= ({children})=>{
         setTags([...tags, newTag ])
         localStorage.setItem("tags",JSON.stringify([...tags, newTag ]));
     }
-
     const putTag = (pId,value)=>{
         const newTags = tags.map(tag =>{
             if(tag.id == pId){
@@ -36,7 +34,6 @@ export const  FilterProvider= ({children})=>{
             }
             return tag;
         })
-        console.log(newTags);
         setTags(newTags);
         localStorage.setItem("tags",JSON.stringify(newTags));
     }
@@ -54,8 +51,11 @@ export const  FilterProvider= ({children})=>{
         {id: 5, name: "YouTube", url: "https://youtube.com", category: "Video", star: false},
         {id: 6, name: "Facebook", url: "https://facebook.com", category: "Red Social", star: false},
     ];    
-    const [idLink, setIdLink] = useState(1);
-    const [links, setLinks] = useState(paginasWeb);
+    const l = JSON.parse(window.localStorage.getItem("links"))|| paginasWeb;
+    const longLinks = l.length + 1;
+    // console.log(longLinks,l);
+    const [links, setLinks] = useState(l);
+    const [idLink, setIdLink] = useState(longLinks);
     const [typeLink, setTypeLinks] = useState();
     const postLink = (link,url,category)=>{
         const newLink = {
@@ -66,32 +66,44 @@ export const  FilterProvider= ({children})=>{
         }
         setIdLink(idLink + 1);
         setLinks([...links,newLink]);
+        localStorage.setItem("links",JSON.stringify([...links,newLink]));
     }
-    const putLink=(pId,link,url,category)=>{
-        links.map(l =>{
-            if(l.id == pId){
-                l.name = link;
-                l.url = url;
-                l.category = category;
+    const putLink=(pId,name,url,category)=>{
+        const newLinks = links.map(link =>{
+            if(link.id == pId){
+                return{
+                    ...link,
+                    name: name,
+                    url: url,
+                    category: category
+                }
             }
+            return link;
         })
+        setLinks(newLinks);
+        localStorage.setItem("links",JSON.stringify(newLinks));
+
     }
     const deleteLink=(pId)=>{
         const newLinks = links.filter(link =>link.id != pId);
         setLinks(newLinks);
+        localStorage.setItem("links",JSON.stringify(newLinks));
     }
     const filterLink = (pCategory) => {
         const newLinks = links.filter(link => link.category === pCategory);
         setTypeLinks(newLinks);
     }
     const changeStar = (pid, value)=>{
-        links.map(link => {
+        const newStar = links.map(link => {
             if(link.id == pid){
-                link.star = value;
-                // console.log(link);
+                return{
+                    ...link,
+                    star: value
+                }
             }
+            return link;
         })
-        console.log(links)
+        localStorage.setItem("links",JSON.stringify(newStar));
     }
     return(
         <FilterContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink,typeLink,filterLink,changeStar}}>
