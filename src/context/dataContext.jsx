@@ -104,6 +104,7 @@ export const  FilterProvider= ({children})=>{
             return link;
         })
         localStorage.setItem("links",JSON.stringify(newStar));
+        //el bug esta aca
     }
     return(
         <FilterContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink,typeLink,filterLink,changeStar}}>

@@ -1,5 +1,5 @@
-import Path from "./Path"
-import Star from "../icons/Star";
+import Path from "../form/Path"
+import Star from "../../../icons/Star";
 function Site ({value, url,category, id, star}){
     return(
         <article className="w-60 text-md rounded-md border-2">

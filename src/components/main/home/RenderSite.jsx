@@ -1,4 +1,4 @@
-import { FilterContext } from "../context/dataContext";
+import { FilterContext } from "../../../context/dataContext";
 import { useContext, useEffect, useState } from "react";
 import Site from "./Site"
 function RenderSite (){

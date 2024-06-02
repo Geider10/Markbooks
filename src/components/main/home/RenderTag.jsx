@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { FilterContext } from "../context/dataContext";
+import { FilterContext } from "../../../context/dataContext";
 import Tag from "./Tag"
-import Button from "./Button";
-import Modal from "./Modal";
+import Button from "../form/Button";
+import Modal from "../form/Modal";
 function RenderTag() {
     const { tags, postTag, putTag, deleteTag, filterLink} = useContext(FilterContext);
     const [edit, setEdit] = useState(false);

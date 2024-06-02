@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import { FilterContext } from "../context/dataContext";
-import Button from "./Button";
-import Modal from "./Modal";
-import Table from "./Table";
+import { FilterContext } from "../../../context/dataContext";
+import Button from "../form/Button";
+import Modal from "../form/Modal";
+import Table from "../board/Table";
 
 function Board() {
     const { tags, postLink, putLink } = useContext(FilterContext);

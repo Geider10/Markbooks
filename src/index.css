@@ -7,7 +7,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #dfdfdf;
   background-color: #242424;
 
   font-synthesis: none;
@@ -40,4 +40,12 @@ body {
   align-items: center;
   gap: 20px;
 }
-
+.link{
+  color: #dfdfdf;
+  list-style: none;
+  transition: color 0.5 ease;
+}
+.link:hover,.active{
+  border-bottom: 1px solid #50f8c0;
+  color: #50f8c0;
+}

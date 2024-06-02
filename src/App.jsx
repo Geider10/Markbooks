@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import StateData from "./context/StateData";
-import Header from "./components/Header";
-import Home from "./components/Home"
-import Board from "./components/Board"
+import Header from "./components/header/Header";
+import Home from "./components/main/home/Home"
+import Board from "./components/main/board/Board"
 
 function App() {
     return (

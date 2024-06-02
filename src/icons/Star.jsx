@@ -5,7 +5,13 @@ function Star({ pId, pStar}) {
     const [color, setColor] = useState(pStar? true: false);
     const handleClick = () => {
         setColor(!color)
-        changeStar(pId,!color);
+        if(color == true){
+            changeStar(pId,false);
+        }
+        else {
+            changeStar(pId,true);
+        }
+      
     }
     return (
         <svg onClick={handleClick}xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill={color == true? "#ffee00" : "none"} stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-star" >
