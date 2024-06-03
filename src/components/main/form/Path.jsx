@@ -1,5 +1,5 @@
 import { Link,NavLink } from "react-router-dom";
-function Path ({name, path, tipo}){
-    return <NavLink to={path} className={({isActive})=> isActive ? "link": "active"} target={tipo}> {name}</NavLink>
+function Path ({name, path, tipo, style}){
+    return <Link to={path} className={style} target={tipo}> {name}</Link>
 }
 export default Path;

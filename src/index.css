@@ -49,3 +49,15 @@ body {
   border-bottom: 1px solid #50f8c0;
   color: #50f8c0;
 }
+.colorOne{
+  color: #50f8c0;
+}.colorTwo{
+  color: #faba31;
+}
+.backOne{
+  background-color: #50f8c0;
+}
+.backTwo{
+  background-color: #faba31;
+
+}

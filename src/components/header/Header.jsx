@@ -9,7 +9,6 @@ function Header() {
             <nav className="flex gap-2 justify-center">
                 <NavLink to="/" className={({ isActive }) => isActive ? "active" : "link"} >Home</NavLink>
                 <NavLink to="/Board" className={({ isActive }) => isActive ? "active" : "link"} >Servicios</NavLink>
-                {/* <NavLink to="/Graficos" className={({ isActive }) => isActive ? "active" : "link"} >Gráficos</NavLink> */}
             </nav>
         </header>
     )
