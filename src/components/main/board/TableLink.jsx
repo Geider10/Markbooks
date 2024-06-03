@@ -1,7 +1,7 @@
 import { FilterContext } from "../../../context/dataContext";
 import { useContext} from "react";
 import Button from "../form/Button";
-function Table ({handlePutLinks}){
+function TableLink ({handlePutLinks}){
     const {links, deleteLink} = useContext(FilterContext); 
     const handleDeleteLink=(e)=>{
         deleteLink( e.target.id);
@@ -33,4 +33,4 @@ function Table ({handlePutLinks}){
         </table>
     )
 }
-export default Table;
+export default TableLink;

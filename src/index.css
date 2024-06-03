@@ -59,5 +59,22 @@ body {
 }
 .backTwo{
   background-color: #faba31;
+}
+.centerBoard{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 
+  align-items: center
+  ;
+}
+.tableLink{
+  font-weight: bold;
+  font-size: 20px;
+  opacity: 0.5;
+}
+.tableLink:hover,.tableLinkActive{
+  border-bottom: 1px solid #dfdfdf;
+  opacity: 1;
+  color: #dfdfdf;
 }

@@ -2,8 +2,8 @@ import { useState, useContext } from "react";
 import { FilterContext } from "../../../context/dataContext";
 import Button from "../form/Button";
 import Modal from "../form/Modal";
-import Table from "../board/Table";
-
+import TableLink from "../board/TableLink";
+import TableCategory from "./TableCategory";
 function Board() {
     const { tags, postLink, putLink } = useContext(FilterContext);
     const [modal, setModal] = useState(false);
@@ -58,9 +58,30 @@ function Board() {
         setModal(true);
         setButton(true);
     }
+
+    const [tableLink, setTableLink] = useState(true);
+    const navLink=(e)=>{
+        window.document.querySelector(".tableLinkActive")?.classList.remove("tableLinkActive");
+        e.target.classList.add("tableLinkActive");
+      }
+    const handleLinks =(e)=>{
+        navLink(e)
+        setTableLink(true)
+    }
+    const handleCategorys =(e)=>{
+        navLink(e)
+        setTableLink(false)
+    }
     return (
-        <>
-            <Button name="Agregar" click={handleModalOn} style="bg-green-400" />
+        <div className="centerBoard">
+            <div className="flex items-center gap-48 mb-4">
+                <div className="flex items-center gap-2">
+                    <span onClick={handleLinks} className="tableLink tableLinkActive">Links</span>
+                    <span>|</span>
+                    <span onClick={handleCategorys} className="tableLink">Categorias</span>
+                </div>
+                <Button name="Agregar" click={handleModalOn} style="bg-green-400" />
+            </div>
             {modal &&
                 <Modal url={true} name="Pagina" btnName={button ? "Editar" : "Crear"} text={value} nameUrl={url} change={handleGetValue} changeUrl={handleGetUrl} close={handleModalOff} submit={handleEventLink}>
                     <select onChange={handleCategory} value={category} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -69,10 +90,9 @@ function Board() {
                         ))}
                     </select>
                 </Modal>}
-            <section className="flex justify-center">
-                <Table handlePutLinks={handlePutLink} />
-            </section>
-        </>
+            {tableLink ? <TableLink handlePutLinks={handlePutLink} /> : <TableCategory/> }
+
+        </div>
     )
 }
 export default Board
