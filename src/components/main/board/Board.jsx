@@ -4,40 +4,40 @@ import Button from "../form/Button";
 import Modal from "../form/Modal";
 import TableLink from "../board/TableLink";
 import TableCategory from "./TableCategory";
-import { Link } from "react-router-dom";
+
 function Board() {
-    const { tags, postLink, putLink } = useContext(FilterContext);
+    const {tags, postLink, putLink, postTag, putTag } = useContext(FilterContext);
     //attributes of link
     const handleModalOn = () => {
-        if(tableLink == "link"){
+        if(tableType == "link"){
             setModalType("link")
-            setMetodo("post");
+            setMetodoLink("post");
             setCategory("General");
         }
-        else if(tableLink == "tag"){
+        else if(tableType == "tag"){
             setModalType("tag");
-            setMetodo("post");
+            setMetodoTag("post");
         }
     }
     const handleModalOff = () => {
-        if(tableLink == "link"){
-            setButton(false);
+        if(tableType == "link"){
+            setEditLink(false);
             setValue("");
             setUrl("");
-            setMetodo("");
             setCategory("");
         }
-        else if(tableLink == "tag"){
+        else if(tableType == "tag"){
+            setEditTag(false);
             setTxt("");
         }
         setModalType("");
     }
+    const [linkId, setLinkId] = useState(0);
     const [value, setValue] = useState("")
-    const [button, setButton] = useState(false);
-    const [metodo, setMetodo] = useState("");
-    const [id, setId] = useState(1);
-    const [category, setCategory] = useState("");
     const [url, setUrl] = useState("")
+    const [category, setCategory] = useState("");
+    const [metodoLink, setMetodoLink] = useState("");
+    const [editLink, setEditLink] = useState(false);
     const handleGetValue = (e) => {
         setValue(e.target.value);
     }
@@ -48,29 +48,32 @@ function Board() {
         setCategory(e.target.value);
     }
     const handleEventLink = () => {
-        const typeMetodo = metodo;
+        const typeMetodo = metodoLink;
         if (typeMetodo == "post" && value !== "" && url !== "") {
             postLink(value, url, category);
-            handleModalOffLink();
+            handleModalOff();
         }
         else if (typeMetodo == "put") {
-            putLink(id, value, url, category);
-            handleModalOffLink();
+            putLink(linkId, value, url, category);
+            handleModalOff();
         }
+       
     }
     const handlePutLink = (e) => {
-        setId(e.target.id);
+        setModalType("link");
+        setMetodoLink("put");
+        setEditLink(true);
+        setLinkId(e.target.id);
         setValue(e.target.value);
         let urlValue = e.target.attributes.url.value;
         let categoryValue = e.target.attributes.category.value;
         setCategory(categoryValue);
         setUrl(urlValue);
-        setMetodo("put");
-        setModalLink(true);
-        setButton(true);
+        
     }
+
     //controller render the tables
-    const [tableLink, setTableLink] = useState("link");
+    const [tableType, setTableType] = useState("link");
     const [modalType, setModalType] = useState("")
     const navLink = (e) => {
         window.document.querySelector(".tableLinkActive")?.classList.remove("tableLinkActive");
@@ -78,48 +81,40 @@ function Board() {
     }
     const handleLinks = (e) => {
         navLink(e)
-        setTableLink("link")
-        // setModalType("link")
+        setTableType("link")
     }
     const handleCategorys = (e) => {
         navLink(e)
-        setTableLink("tag")
-        // setModalType("tag")
+        setTableType("tag")
     }
     //attributes of category
-    const [txt, setTxt] = useState("");
     const [tagId, setTagId] = useState(0);
+    const [txt, setTxt] = useState("");
     const [metodoTag, setMetodoTag] = useState("");
-    const [buttons, setButtons] = useState(false);
+    const [editTag, setEditTag] = useState(false);
     const handleGetTxt = (e) => {
         setTxt(e.target.value);
     }
+    //post && put
     const handleTagEvent = () => {
         let typeMetod = metodoTag;
         if (typeMetod == "post" && txt !== "") {
             postTag(txt);
-            setModal(false);
+            handleModalOff();
         }
         else if (typeMetod == "put") {
             putTag(tagId, txt);
-            setButtons(false);
-            setModal(false);
+            handleModalOff();
         }
-        setTxt("");
     }
-    //put &&delete
     const handlePutTag = (e) => {
-        const general = e.target.innerText;
-        if (edit && general != "General") {
-            setTxt(e.target.innerText);
-            setTagId(e.target.id);
+        const general = e.target.value;
+        if (general != "General") {
+            setModalType("tag")
             setMetodoTag("put");
-            setButtons(true);
-            setModal(true);
-        }
-        if (!edit) {
-            const val = e.target.innerText;
-            filterLink(val);
+            setEditTag(true);
+            setTxt(e.target.value);
+            setTagId(e.target.id);
         }
     }
     return (
@@ -133,7 +128,7 @@ function Board() {
                 <Button name="Agregar" click={handleModalOn} style="bg-green-400" />
             </div>
             {modalType == "link" &&
-                <Modal url={true} name="Nuevo Link" btnName={button ? "Editar" : "Crear"} text={value} nameUrl={url} change={handleGetValue} changeUrl={handleGetUrl} close={handleModalOff} submit={handleEventLink}>
+                <Modal url={true} name={!editLink ? "Nuevo Link" : "Link"} btnName={!editLink ? "Crear" : "Editar"} text={value}  change={handleGetValue} submit={handleEventLink} close={handleModalOff} nameUrl={url}  changeUrl={handleGetUrl}>
                     <select onChange={handleCategory} value={category} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         {tags && tags.map(t => (
                             <option key={t.id} value={t.name}>{t.name}</option>
@@ -141,10 +136,9 @@ function Board() {
                     </select></Modal>
             }
             {modalType == "tag" &&
-                <Modal name="Nueva Etiqueta" close={handleModalOff} change={handleGetTxt} submit={handleTagEvent} text={txt} btnName={buttons ? "Editar" : "Crear"} url={false}>
-                </Modal>
+                <Modal url={false} name={!editTag ?"Nueva Etiqueta": "Etiqueta"} btnName={!editTag ? "Crear" : "Editar"} text={txt}  change={handleGetTxt} submit={handleTagEvent}  close={handleModalOff} > </Modal>
             }
-            {tableLink == "link" ? <TableLink handlePutLinks={handlePutLink} /> : <TableCategory handlePutTags={handlePutTag} />}
+            {tableType == "link" ? <TableLink handlePutLinks={handlePutLink} /> : <TableCategory handlePutTags={handlePutTag} />}
         </div>
     )
 }
