@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext} from "react";
 import { FilterContext } from "../../../context/dataContext";
 import Button from "../form/Button";
 import Modal from "../form/Modal";
@@ -7,7 +7,7 @@ import TableCategory from "./TableCategory";
 
 function Board() {
     const {tags, postLink, putLink, postTag, putTag } = useContext(FilterContext);
-    //attributes of link
+    //attributes && method htto the links
     const handleModalOn = () => {
         if(tableType == "link"){
             setModalType("link")
@@ -87,7 +87,8 @@ function Board() {
         navLink(e)
         setTableType("tag")
     }
-    //attributes of category
+
+    //attributes && method htto the tags
     const [tagId, setTagId] = useState(0);
     const [txt, setTxt] = useState("");
     const [metodoTag, setMetodoTag] = useState("");
@@ -95,7 +96,6 @@ function Board() {
     const handleGetTxt = (e) => {
         setTxt(e.target.value);
     }
-    //post && put
     const handleTagEvent = () => {
         let typeMetod = metodoTag;
         if (typeMetod == "post" && txt !== "") {

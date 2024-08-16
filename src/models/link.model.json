@@ -1,0 +1,50 @@
+[
+    {
+        "id": 0,
+        "name": "Duolingo",
+        "url": "https://www.duolingo.com",
+        "category": "Inglés",
+        "star": false,
+        "description": "Plataforma de aprendizaje de idiomas con lecciones interactivas."
+    },
+    {
+        "id": 1,
+        "name": "BBC Learning English",
+        "url": "https://www.bbc.co.uk/learningenglish",
+        "category": "Inglés",
+        "star": false,
+        "description": "Recursos gratuitos para aprender inglés con contenido de la BBC."
+    },
+    {
+        "id": 2,
+        "name": "freeCodeCamp",
+        "url": "https://www.freecodecamp.org",
+        "category": "Programación",
+        "star": false,
+        "description": "Plataforma gratuita para aprender a programar con proyectos prácticos."
+    },
+    {
+        "id": 3,
+        "name": "Codecademy",
+        "url": "https://www.codecademy.com",
+        "category": "Programación",
+        "star": false,
+        "description": "Cursos interactivos en línea para aprender a programar."
+    },
+    {
+        "id": 4,
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com",
+        "category": "Búsqueda Laboral",
+        "star": false,
+        "description": "Red social profesional para conectar y buscar oportunidades laborales."
+    },
+    {
+        "id": 5,
+        "name": "Indeed",
+        "url": "https://www.indeed.com",
+        "category": "Búsqueda Laboral",
+        "star": false,
+        "description": "Portal de empleo para buscar ofertas laborales en diversas industrias."
+    }
+]

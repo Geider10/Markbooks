@@ -22,8 +22,10 @@ body {
 }
 .inputText{
   width: 100%;
-  border: 10px;
+  border-radius: 5px;
   padding: 5px 10px;
+  color: #dfdfdf;
+  background-color: #242424;
 }
 .modalCenter{
   position: absolute;

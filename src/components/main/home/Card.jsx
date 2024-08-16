@@ -1,11 +1,12 @@
 import Path from "../form/Path"
 import Star from "../../../icons/Star";
-function Site ({value, url,category, id, star}){
+function Site (data){
+    const {value,url,category, id, star} = data
     return(
         <article className="w-60 text-md rounded-md border-2">
             <div className="bg-red-400 h-16 flex justify-between">
                 <span>{category}</span>
-                <Star pId={id} pStar={star}/>
+                <Star sId={id} starValue={star}/>
             </div>
             <div className="text-center bg-gray-600">
                 <h3>{value}</h3>

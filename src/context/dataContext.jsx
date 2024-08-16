@@ -1,113 +1,106 @@
-import { createContext,useEffect,useState } from "react";
-import { json } from "react-router-dom";
+import { createContext,useState,useEffect} from "react";
+import tagModel from '../models/tag.model.json';
+import linkModel from '../models/link.model.json';
 //Este es el que tenemos que consumir
 export const FilterContext = createContext();
 
 //Este es el que nos provee de acceso al contexto
 export const  FilterProvider= ({children})=>{
-    const categorias = [
-        {id: 0, name: "General"},
-        {id: 1, name: "Video"},
-        {id: 2, name: "Red Social"}
-    ];
-    //tags
-    const t =  JSON.parse(window.localStorage.getItem("tags")) ||  categorias;
-    const length = t.length;
-    const [tags, setTags] = useState(t);
-    const [idTag, setIdTag] = useState(length);
-    const postTag = (tag)=>{
+    const tagStorage = ()=>{
+        return JSON.parse(window.localStorage.getItem("tags")) ||  tagModel;
+    }  
+    const [tags, setTags] = useState(tagStorage());
+    useEffect(()=>{
+        console.log("hola");
+    },[])
+    const creatId = ()=>{
+        let newId = window.crypto.randomUUID()
+        return newId
+    }  
+    const postTag = (tagName)=>{
         const newTag = {
-            id:idTag,
-            name: tag
+            id:creatId(),
+            name: tagName
         }
-        setIdTag(idTag + 1);
-        setTags([...tags, newTag ])
         localStorage.setItem("tags",JSON.stringify([...tags, newTag ]));
+        setTags([...tags, newTag ])
     }
-    const putTag = (pId,value)=>{
+    const putTag = (tId,tagName)=>{
         const newTags = tags.map(tag =>{
-            if(tag.id == pId){
+            if(tag.id == tId){
                 return{
                     ...tag,
-                    name: value
+                    name: tagName
                 }
             }
             return tag;
         })
-        setTags(newTags);
         localStorage.setItem("tags",JSON.stringify(newTags));
+        setTags(tagStorage());
     }
     const deleteTag = (pId)=>{
         const newTags= tags.filter(tag => tag.id != pId);
         setTags(newTags);
         localStorage.setItem("tags",JSON.stringify(newTags));
+        console.log(tags);
     }
-    //paginas
-    const paginasWeb = [
-        {id: 0, name: "Google", url: "https://google.com", category: "General", star: false},
-        {id: 1, name: "YouTube", url: "https://youtube.com", category: "Video", star: false},
-        {id: 3, name: "Facebook", url: "https://facebook.com", category: "Red Social", star: false},
-        {id: 4, name: "Google", url: "https://google.com", category: "General", star: false},
-        {id: 5, name: "YouTube", url: "https://youtube.com", category: "Video", star: false},
-        {id: 6, name: "Facebook", url: "https://facebook.com", category: "Red Social", star: false},
-    ];    
-    const l = JSON.parse(window.localStorage.getItem("links"))|| paginasWeb;
-    const longLinks = l.length + 1;
-    // console.log(longLinks,l);
-    const [links, setLinks] = useState(l);
-    const [idLink, setIdLink] = useState(longLinks);
-    const [typeLink, setTypeLinks] = useState();
-    const postLink = (link,url,category)=>{
+    //paginas 
+    const linkStorage = JSON.parse(window.localStorage.getItem("links"))|| linkModel;
+    const [links, setLinks] = useState(linkStorage);
+    const [linksTag, setLinksTag] = useState("General");
+    const [typeFilter, setTypeFilter] = useState("category")
+    const postLink = (link,url,category,description)=>{
         const newLink = {
-            id: idLink,
+            id: creatId(),
             name: link,
             url: url,
-            category: category
+            category: category,
+            description : description
         }
-        setIdLink(idLink + 1);
-        setLinks([...links,newLink]);
         localStorage.setItem("links",JSON.stringify([...links,newLink]));
+        setLinks([...links,newLink]);
     }
-    const putLink=(pId,name,url,category)=>{
+    const putLink=(lId,name,url,category,description)=>{
         const newLinks = links.map(link =>{
-            if(link.id == pId){
+            if(link.id == lId){
                 return{
                     ...link,
                     name: name,
                     url: url,
-                    category: category
+                    category: category,
+                    description: description
                 }
             }
             return link;
         })
-        setLinks(newLinks);
         localStorage.setItem("links",JSON.stringify(newLinks));
-
+        setLinks(newLinks);
     }
     const deleteLink=(pId)=>{
         const newLinks = links.filter(link =>link.id != pId);
-        setLinks(newLinks);
         localStorage.setItem("links",JSON.stringify(newLinks));
+        setLinks(newLinks);
     }
-    const filterLink = (pCategory) => {
-        const newLinks = links.filter(link => link.category === pCategory);
-        setTypeLinks(newLinks);
+    const changeTagLinks = (tagName) => {
+        setLinksTag(tagName);
     }
-    const changeStar = (pid, value)=>{
-        const newStar = links.map(link => {
-            if(link.id == pid){
-                return{
-                    ...link,
-                    star: value
-                }
-            }
-            return link;
-        })
-        localStorage.setItem("links",JSON.stringify(newStar));
-        //el bug esta aca
+    const changeTypeFilter=(filterName)=>{
+        setTypeFilter(filterName)
+        console.log(filterName);
+    }
+    const changeStar = (sid, starValue)=>{
+        const link = links.find(l => l.id == sid)
+        const newLink = {...link,star : starValue}
+        const filterLink = links.filter(l => l.id != sid)
+        filterLink.push(newLink)
+        localStorage.setItem("links",JSON.stringify(filterLink));
+        setLinks(filterLink)
     }
     return(
-        <FilterContext.Provider value={{tags, postTag,putTag,deleteTag,links,postLink,putLink,deleteLink,typeLink,filterLink,changeStar}}>
+        <FilterContext.Provider value={{
+            tags, postTag,putTag,deleteTag,
+            links,postLink,putLink,deleteLink,changeStar,
+            linksTag,changeTagLinks,typeFilter,changeTypeFilter}}>
            {children}
         </FilterContext.Provider>
     )
