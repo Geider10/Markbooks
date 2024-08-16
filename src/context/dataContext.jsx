@@ -10,9 +10,7 @@ export const  FilterProvider= ({children})=>{
         return JSON.parse(window.localStorage.getItem("tags")) ||  tagModel;
     }  
     const [tags, setTags] = useState(tagStorage());
-    useEffect(()=>{
-        console.log("hola");
-    },[])
+
     const creatId = ()=>{
         let newId = window.crypto.randomUUID()
         return newId
@@ -86,7 +84,6 @@ export const  FilterProvider= ({children})=>{
     }
     const changeTypeFilter=(filterName)=>{
         setTypeFilter(filterName)
-        console.log(filterName);
     }
     const changeStar = (sid, starValue)=>{
         const link = links.find(l => l.id == sid)

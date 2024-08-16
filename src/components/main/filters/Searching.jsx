@@ -21,6 +21,7 @@ function Searching (){
                 className="inputText"
                 onChange={handleText}
                 value = {keyword}
+                placeholder="Name the link..."
             />
             <button onClick={handleSearch} className="rounded-md p-1 bg-orange-400 cursor-pointer">Buscar </button>
         </div>

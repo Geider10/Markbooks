@@ -7,10 +7,11 @@ function Home (){
     return(
         <>
         <Details/>
-         <div className="flex justify-center">
+         <div className="flex flex-col items-center gap-4 mb-4">
          <Searching/>
+         <RenderTag/>
          </div>
-        <RenderTag/>
+       
         <RenderCard/>
         {/* <Form/> */}
         </>
