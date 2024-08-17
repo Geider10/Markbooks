@@ -87,17 +87,29 @@ export const  FilterProvider= ({children})=>{
     }
     const changeStar = (sid, starValue)=>{
         const link = links.find(l => l.id == sid)
-        const newLink = {...link,star : starValue}
-        const filterLink = links.filter(l => l.id != sid)
-        filterLink.push(newLink)
-        localStorage.setItem("links",JSON.stringify(filterLink));
-        setLinks(filterLink)
+        const updateLink = {...link,star : starValue}
+        const filterLinks = links.filter(l => l.id != sid)
+        filterLinks.push(updateLink)
+        localStorage.setItem("links",JSON.stringify(filterLinks));
+        setLinks(filterLinks)
+    }
+    const changeImage = (imgId, imgValue)=>{
+        const link = links.find(l => l.id == imgId)
+        const updateLink = {...link, img : imgValue}
+        const filterLinks = links.filter(l => l.id != imgId)
+        filterLinks.push(updateLink)
+        console.log(filterLinks)
+        // localStorage.setItem('links',JSON.stringify(filterLinks))
+        // setLinks(filterLinks)
     }
     return(
         <FilterContext.Provider value={{
             tags, postTag,putTag,deleteTag,
             links,postLink,putLink,deleteLink,changeStar,
-            linksTag,changeTagLinks,typeFilter,changeTypeFilter}}>
+            linksTag,changeTagLinks,
+            typeFilter,changeTypeFilter,
+            changeImage
+            }}>
            {children}
         </FilterContext.Provider>
     )

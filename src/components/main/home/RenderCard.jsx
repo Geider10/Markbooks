@@ -18,7 +18,7 @@ function RenderSite (){
     return(
         <section className="cardCenter" >
             {link && link.map((l)=>(
-                <Card key={l.id} value={l.name} url={l.url} category={l.category} id={l.id} star={l.star}/>
+                <Card key={l.id} value={l.name} url={l.url} category={l.category} id={l.id} star={l.star} img={l.img}/>
             ))}
         </section>
     )

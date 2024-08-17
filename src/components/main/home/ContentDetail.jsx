@@ -11,7 +11,7 @@ function ContentDetail(){
         setLink(filterLink)
     },[id])
     return (
-        <div>
+        <div className="centerContent">
            {link && <DetailCard link={link}/>}
         </div>
     )

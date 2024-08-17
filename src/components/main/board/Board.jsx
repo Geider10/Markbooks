@@ -139,6 +139,7 @@ function Board() {
                 <Modal url={false} name={!editTag ?"Nueva Etiqueta": "Etiqueta"} btnName={!editTag ? "Crear" : "Editar"} text={txt}  change={handleGetTxt} submit={handleTagEvent}  close={handleModalOff} > </Modal>
             }
             {tableType == "link" ? <TableLink handlePutLinks={handlePutLink} /> : <TableCategory handlePutTags={handlePutTag} />}
+             {/* descargar todos los enlaces como pdf */}
         </div>
     )
 }
