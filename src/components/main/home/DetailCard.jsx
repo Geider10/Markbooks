@@ -8,15 +8,15 @@ function DetailCard({link}){
             </div>
            <div className="w-[70%] ">
                 <div className="flex justify-between">
-                    <label className=" bg-slate-600 rounded-xl p-1 text-xs inline-block mb-2">{link.category}</label>
+                    <span className=" bg-slate-600 rounded-xl py-1 px-2 text-xs inline-block mb-2">{link.category}</span>
                     <div className='flex gap-1'> 
                         <Star sId={link.id} starValue={link.star}/>
                     </div>
                 </div>
                 <h2 className="text-2xl font-semibold">{link.name}</h2>
-                <h3 className="text-xs text-slate-200/60 mb-2">{link.url}</h3>
+                <h3 className="text-xs text-slate-200/70 mb-2">{link.url}</h3>
                 <p>{link.description}</p>
-                <p>{link.date}</p>
+                <span className='text-xs text-slate-200/70'>Creación: {link.date}</span>
            </div>
         </div>
     )

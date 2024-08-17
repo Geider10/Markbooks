@@ -23,7 +23,7 @@ function Searching (){
                 value = {keyword}
                 placeholder="Name the link..."
             />
-            <button onClick={handleSearch} className="rounded-md p-1 bg-orange-400 cursor-pointer">Buscar </button>
+            <button onClick={handleSearch} className="rounded-md p-1 cursor-pointer backOne text-gray-700">Buscar </button>
         </div>
     )
 }

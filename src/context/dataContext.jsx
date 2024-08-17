@@ -1,15 +1,14 @@
 import { createContext,useState,useEffect} from "react";
 import tagModel from '../models/tag.model.json';
 import linkModel from '../models/link.model.json';
+import coloresList from '../models/colores.json';
 //Este es el que tenemos que consumir
 export const FilterContext = createContext();
 
 //Este es el que nos provee de acceso al contexto
 export const  FilterProvider= ({children})=>{
-    const tagStorage = ()=>{
-        return JSON.parse(window.localStorage.getItem("tags")) ||  tagModel;
-    }  
-    const [tags, setTags] = useState(tagStorage());
+    const tagStorage = JSON.parse(window.localStorage.getItem("tags")) ||  tagModel  
+    const [tags, setTags] = useState(tagStorage);
 
     const creatId = ()=>{
         let newId = window.crypto.randomUUID()
@@ -20,8 +19,8 @@ export const  FilterProvider= ({children})=>{
             id:creatId(),
             name: tagName
         }
-        localStorage.setItem("tags",JSON.stringify([...tags, newTag ]));
         setTags([...tags, newTag ])
+        localStorage.setItem("tags",JSON.stringify([...tags, newTag ]));
     }
     const putTag = (tId,tagName)=>{
         const newTags = tags.map(tag =>{
@@ -33,27 +32,42 @@ export const  FilterProvider= ({children})=>{
             }
             return tag;
         })
+        setTags(newTags);
         localStorage.setItem("tags",JSON.stringify(newTags));
-        setTags(tagStorage());
     }
     const deleteTag = (pId)=>{
         const newTags= tags.filter(tag => tag.id != pId);
         setTags(newTags);
         localStorage.setItem("tags",JSON.stringify(newTags));
-        console.log(tags);
     }
-    //paginas 
+    //enlaces controller
     const linkStorage = JSON.parse(window.localStorage.getItem("links"))|| linkModel;
     const [links, setLinks] = useState(linkStorage);
     const [linksTag, setLinksTag] = useState("General");
     const [typeFilter, setTypeFilter] = useState("category")
+
+    const createColor = ()=>{
+        const lengthColores = coloresList.length
+        const random = Math.floor(Math.random() * lengthColores)
+        const newColor = coloresList[random].color
+        return newColor
+    }
+    const createDate = ()=>{
+        const date = new Date()
+        const dateLocal =  date.toLocaleDateString()
+        // console.log(dateLocal);
+        return dateLocal
+    }
     const postLink = (link,url,category,description)=>{
         const newLink = {
             id: creatId(),
             name: link,
             url: url,
             category: category,
-            description : description
+            description : description,
+            color : createColor(),
+            img : "",
+            date : createDate()
         }
         localStorage.setItem("links",JSON.stringify([...links,newLink]));
         setLinks([...links,newLink]);

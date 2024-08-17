@@ -1,7 +1,6 @@
 [
     {"id": 0, "name": "General"},
-    {"id": 1, "name": "Programacion"},
-    {"id": 2, "name": "Busqueda laboral"},
-    {"id": 3, "name": "Ingles"},
-    {"id": 4, "name": "Interesante"}
+    {"id": 1, "name": "Programación"},
+    {"id": 2, "name": "Búsqueda Laboral"},
+    {"id": 3, "name": "Inglés"}
 ]
