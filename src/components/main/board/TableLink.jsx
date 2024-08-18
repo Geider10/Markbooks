@@ -7,7 +7,7 @@ function TableLink ({handlePutLinks,handleDeleteLinks}){
 
     return(
         <table className="text-center border-2">
-            <thead>
+            <thead className=" bg-gray-500">
                 <tr>
                     <th>Nombre</th>
                     <th>Categoria</th>

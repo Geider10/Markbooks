@@ -10,7 +10,7 @@ function Site (data){
                 <Star sId={id} starValue={star}/>
             </div>
             <div className="text-center bg-gray-600 pb-2">
-                <h3>{value}</h3>
+                <h3 className="font-medium" >{value}</h3>
                 <div className="flex justify-center gap-2 mt-1">
                     <Path path={url} name={"Ir"} tipo={"blank"} style={"backOne px-2 inline-block rounded-md text-gray-700"}/>
                     <Path path={`/link/${id}`} name={"Detalles"} style={" px-2 inline-block rounded-md border"}/>

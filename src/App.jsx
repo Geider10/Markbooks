@@ -11,7 +11,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/panel" element={<Board />}></Route>
-                <Route path="/link/:id" element={<ContentDetail />}></Route>
+                {/* controla que cartDetail se renderiza */}
+                <Route path="/link/:id" element={<ContentDetail />}></Route> 
             </Routes>
         </BrowserRouter>
     )
