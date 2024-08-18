@@ -29,11 +29,13 @@ body {
 }
 .modalCenter{
   position: absolute;
-  left: 37%;
-  right:0;
-  top: 40%;
-  bottom:0;
-  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Asegúrate de que el z-index sea lo suficientemente alto */
+  width: 60%; /* O cualquier otro tamaño que desees */
+  max-width: 400px; /* Limita el ancho máximo del modal */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 .cardCenter{
   display: flex;

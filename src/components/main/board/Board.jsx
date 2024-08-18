@@ -10,28 +10,39 @@ function Board() {
     //controller render the tables and activate modal
     const [tableType, setTableType] = useState("link");//segun su valor render x table
     const [modalType, setModalType] = useState("")//segun su valor activa x modal
+    const [btnAction, setBtnAction] = useState(true)
     const addStyleLink = (e) => {
         window.document.querySelector(".tableLinkActive")?.classList.remove("tableLinkActive");
         e.target.classList.add("tableLinkActive");
     }
     const handleTableTypeLin = (e) => {
-        addStyleLink(e)
-        setTableType("link")
+        let btn = btnAction
+        if(btn){
+            addStyleLink(e)
+            setTableType("link")
+        }
     }
     const handleTableTypeCat = (e) => {
-        addStyleLink(e)
-        setTableType("tag")
+        let btn = btnAction
+        if(btn){
+            addStyleLink(e)
+            setTableType("tag")
+        }
     }
     //open x modal for create element
     const handleModalOn = () => {
-        if(tableType == "link"){
-            setModalType("link")
-            setMetodoLink("post");
-            setCategory(tags[0].name)
-        }
-        else if(tableType == "tag"){
-            setModalType("tag");
-            setMetodoTag("post");
+        let btn = btnAction
+        if(btn){
+            if(tableType == "link"){
+                setModalType("link")
+                setMetodoLink("post");
+                setCategory(tags[0].name)
+            }
+            else if(tableType == "tag" ){
+                setModalType("tag");
+                setMetodoTag("post");
+            }
+            setBtnAction(false)
         }
     }
     const handleModalOff = () => {
@@ -46,13 +57,15 @@ function Board() {
             setValueTag("");
         }
         setModalType("");//desactiva x modal
+        setBtnAction(true)
     }
      //attributes && method the links
     const [linkId, setLinkId] = useState(0);
     const [valueLink, setValueLink] = useState("")
     const [url, setUrl] = useState("")
-    const [category, setCategory] = useState("");
-    const [metodoLink, setMetodoLink] = useState("");
+    const [category, setCategory] = useState("")
+    const [description, setDescription] = useState("")
+    const [metodoLink, setMetodoLink] = useState("");//define si se agrega o edita un link
     const [editLink, setEditLink] = useState(false);//permite modificar el modal link
     const handleGetValueL = (e) => {
         setValueLink(e.target.value);
@@ -63,36 +76,49 @@ function Board() {
     const handleGetCategL = (e) => {
         setCategory(e.target.value);
     }
-    //utiliza el context para guardar los elementos en el localstorage
+    const handleGetDescriptonL = (e)=> {
+        setDescription(e.target.value)
+    }
+    //utiliza el context para agregar o eliminar link del localstorage
     const handleSendModalLink = () => {
-        const typeMetodo = metodoLink;
-        if (typeMetodo == "post" && valueLink != "" && url != "" && category != "") {
-            postLink(valueLink, url, category);
-            handleModalOff();
+       const typeMetodo = metodoLink;
+        if (typeMetodo == "post" && valueLink !== "" && url !== "" && category !== "" && description !== "") {
+           postLink(valueLink, url, category, description);
+           handleModalOff();
+           setBtnAction(true)
         }
-        else if (typeMetodo == "put" && valueLink != "" && url != "" && category != "") {
-            putLink(linkId, valueLink, url, category);
-            handleModalOff();
+        else if (typeMetodo == "put" && valueLink !== "" && url !== "" && category !== "" && description !== "") {
+           putLink(linkId, valueLink, url, category, description);
+           handleModalOff();
+           setBtnAction(true)
         }
-       
+     
     }
     //open modal for edit
     const handleEditTableLink = (e) => {
-        setModalType("link");
-        setMetodoLink("put");
-        setEditLink(true);
-        //get values link from buttton edit
-        const idEdit = e.target.id ||  e.currentTarget.id
-        const linkFind = links.find(l => l.id == idEdit)
-        // console.log(linkFind);
-        setLinkId(linkFind.id);
-        setValueLink(linkFind.name);
-        setCategory(linkFind.category);
-        setUrl(linkFind.url);
+        let btn = btnAction
+        if(btn){
+            setModalType("link");
+            setMetodoLink("put");
+            setEditLink(true);
+            //get values link from btn edit
+            const idEdit = e.target.id ||  e.currentTarget.id
+            const linkFind = links.find(l => l.id == idEdit)
+            setLinkId(linkFind.id);
+            setValueLink(linkFind.name);
+            setCategory(linkFind.category);
+            setUrl(linkFind.url);
+            setDescription(linkFind.description)
+            setBtnAction(false)
+            console.log(linkFind);
+        }
     }
     const handleDeleteTableLink=(e)=>{
-        const id = e.currentTarget.id || e.target.id
-        deleteLink(id);
+        let btn = btnAction
+        if(btn){
+            const id = e.currentTarget.id || e.target.id
+            deleteLink(id)
+        }
     }
     //attributes && method the tags
     const [tagId, setTagId] = useState(0);
@@ -107,34 +133,44 @@ function Board() {
         if (typeMetod == "post" && valueTag != "") {
             postTag(valueTag);
             handleModalOff();
+            setBtnAction(true)
         }
         else if (typeMetod == "put" && valueTag != "") {
             putTag(tagId, valueTag);
             handleModalOff();
+            setBtnAction(true)
         }
     }
     const handleEditTableTag = (e) => {
-        const idTag = e.currentTarget.id || e.target.id
-        const tagFind = tags.find(t => t.id == idTag)
-        if (tagFind.name != "General") {
-            setModalType("tag")
-            setMetodoTag("put");
-            setEditTag(true);
-            setTagId(tagFind.id);
-            setValueTag(tagFind.name);
+        let btn = btnAction
+        if(btn){
+            const idTag = e.currentTarget.id || e.target.id
+            const tagFind = tags.find(t => t.id == idTag)
+            if (tagFind.name != "General") {
+                setModalType("tag")
+                setMetodoTag("put");
+                setEditTag(true);
+                setTagId(tagFind.id);
+                setValueTag(tagFind.name);
+                setBtnAction(false)
+            }
         }
+       
     }
     const handleDeleteTableTag = (e)=>{
-        const idTag = e.currentTarget.id || e.target.id
-        const tagFind = tags.find(t => t.id == idTag)
-        tagFind.name != "General" &&  deleteTag(tagFind.id);
+        let btn = btnAction
+        if(btn){
+            const idTag = e.currentTarget.id || e.target.id
+            const tagFind = tags.find(t => t.id == idTag)
+            tagFind.name != "General" &&  deleteTag(tagFind.id);
+        }
     }
     return (
        <div className="flex justify-center">
          <div className="centerBoard  p-2">
             <SelectTable hLinks = {handleTableTypeLin} hCategorys={handleTableTypeCat} hModalOn={handleModalOn}/>
             {modalType == "link" &&
-                <Modal url={true} name={!editLink ? "Crear link" : "Editar Link"} btnName={"Confirmar"}text={valueLink}  change={handleGetValueL} submit={handleSendModalLink} close={handleModalOff} nameUrl={url}  changeUrl={handleGetUrlL}>
+                <Modal url={true} name={!editLink ? "Crear link" : "Editar Link"} btnName={"Confirmar"}text={valueLink}  change={handleGetValueL} submit={handleSendModalLink} close={handleModalOff} nameUrl={url}  changeUrl={handleGetUrlL} nameDescription={description} changeDescription={handleGetDescriptonL}>
                     <CategoryList tagsList={tags} defaultCategory={category} hCategorySelect={handleGetCategL}/>
                 </Modal>
             }
