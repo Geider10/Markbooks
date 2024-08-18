@@ -15,18 +15,18 @@ function Modal({ name, children, text, submit, close, change, btnName, url, name
                         type="text"
                         value={text}
                         onChange={change}
-                        placeholder="Ingresa el nombre:"
+                        placeholder="Ingresar nombre"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     {url &&
                     <input
                         type="text"
                         value={nameUrl}
                         onChange={changeUrl}
-                        placeholder="Ingresa la url:"
+                        placeholder="Ingresar url"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     }
                     <div className="flex gap-2 justify-center ">
-                        <Button name={btnName} style="bg-blue-400" click={submit} />
+                        <Button name={btnName} style={"bg-green-500"} click={submit} />
                         {children}
                     </div>
                 </div>

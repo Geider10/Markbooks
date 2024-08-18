@@ -1,15 +1,12 @@
 import { FilterContext } from "../../../context/dataContext";
 import { useContext } from "react";
-import Button from "../form/Button";
+import Edit from '../../../icons/Edit';
+import Trash from '../../../icons/Trash';
+function TableCategory ({handlePutTags,handleDeleteTags}){
+    const {tags} = useContext(FilterContext);
 
-function TableCategory ({handlePutTags}){
-    const {tags, deleteTag} = useContext(FilterContext);
-    const handleDeleteTag = (e)=>{
-        const value = e.target.value
-        value != "General" &&  deleteTag(e.target.id);
-    }
     return(
-        <table className="text-center">
+        <table className="text-center border-2">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -20,15 +17,23 @@ function TableCategory ({handlePutTags}){
             {tags && tags.map(tag=>(
                 <tr key={tag.id}>
                     <td>{tag.name}</td>
-                    <td className="flex gap-2">
-                        <Button name={"Editar"} style={"bg-green-400"} click={handlePutTags} pId={tag.id} pValue={tag.name} />
-                        <Button name={"Eliminar"} style={"bg-red-400"} click={handleDeleteTag} pId={tag.id} pValue={tag.name}/>
+                    <td className="flex gap-2 justify-center">
+                        <span className={
+                            tag.name == "General"? "bg-sky-900 p-1 rounded-md": " bg-sky-500 p-1 rounded-md cursor-pointer"
+                        }>
+                            <Edit tId={tag.id} tClick={handlePutTags}/>
+                        </span>
+                        <span className={
+                            tag.name == "General"? "bg-red-900 p-1 rounded-md": "bg-red-500 p-1 rounded-md cursor-pointer"
+                        }>   
+                            <Trash tId={tag.id} tClick={handleDeleteTags}/>
+                        </span>
                     </td>
                 </tr>
             ))
             }
         </tbody>
-    </table>
+        </table>
     )
 }
 export default TableCategory

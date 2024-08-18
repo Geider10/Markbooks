@@ -55,7 +55,6 @@ export const  FilterProvider= ({children})=>{
     const createDate = ()=>{
         const date = new Date()
         const dateLocal =  date.toLocaleDateString()
-        // console.log(dateLocal);
         return dateLocal
     }
     const postLink = (link,url,category,description)=>{
@@ -113,6 +112,7 @@ export const  FilterProvider= ({children})=>{
         const filterLinks = links.filter(l => l.id != imgId)
         filterLinks.push(updateLink)
         console.log(filterLinks)
+        //localstorage solo soport 5mb, se recomienda almacenar las imagenes en un servidor
         // localStorage.setItem('links',JSON.stringify(filterLinks))
         // setLinks(filterLinks)
     }
