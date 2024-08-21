@@ -76,8 +76,8 @@ Tags :
 
 ### Destacado
 * Integrar filtros: se puede filtrar por categoria `tagLink` o por nombre `nameLink` usando un `useEffect` desde el renderCard. Cuando se presiona una categoria se almacena ese valor en un estado y se utiliza para retornar una nueva `linksFilter`. Cuando se presiona el btnBuscador el valor del texto se utiliza para retornar una nueva `linksFilter`. Luego de usar algun filtro se renderiza la vista con las nuevas cards.
-* Integrar base64: se utiliza para codificar archivos en cadena de texto. Desde la vista un btn de tipo `input-file` invoca una funcion que declare, esta recibe un `file` y lo retorna como `base64`. Luego se actualiza la vista, la idea es almacenar esta en una BD remota y traer la cadena desde la `url` de la BD remota. 
-* Integrar jspdf: 
+* Integrar base64: se utiliza para codificar archivos en cadena de texto. Cuando se presiona un btn de tipo `input-file` invoca la funcion `convertFile` y esta recibe la imagen cargada del usuario para almacenarla como `base64`. Luego se renderiza la imagen, la idea es almacenar esta en una BD remota y traer la cadena desde la `url` de la BD remota. 
+* Integrar jspdf: crear una instancia del JSDPDF y necesita los datos que va mostrar como `str`. Convertí a string los atributos de `linksList` utilizando el `toString`, luego utilice un foreach y la funcion `doc.text()` para escribir cada link de la lista dentro del PDF. Cuando termina el foreach utilice la funcion `doc.save()` para decargar la lista como PDF. 
 
 
 ## Despliegue
