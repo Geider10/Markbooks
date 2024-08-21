@@ -179,6 +179,7 @@ function Board() {
             }
             {tableType == "link" ? <TableLink handlePutLinks={(e)=>handleEditTableLink(e)} handleDeleteLinks={(e)=>handleDeleteTableLink(e)} /> : <TableCategory handlePutTags={(e)=>handleEditTableTag(e)} handleDeleteTags={(e)=>handleDeleteTableTag(e)} />}
             {/* descargar todos los enlaces como pdf */}
+       
         </div>
        </div>
     )

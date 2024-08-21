@@ -13,14 +13,13 @@ Tiene el objetivo de guardar tus enlaces mas valiosos de manera fácil.
 ## Tabla de Contenidos
 1. [Instalación](#instalación)
 2. [Utilizar aplicación](#utilizar-aplicación)
-3. [Estructura del proyecto](#estructura-del-proyecto)
-4. [Stack de tecnologías](#stack-de-tecnologías)
-5. [Desarrollo](#desarrollo)
-6. [Despliegue](#despliegue)
-7. [Contribuir](#contribuir)
-8. [Licencia](#licencia)
-9. [Autores y reconocimientos](#autores-y-reconocimientos)
-10. [Contacto y soporte](#contacto-y-soporte)
+3. [Stack de tecnologías](#stack-de-tecnologías)
+4. [Desarrollo](#desarrollo)
+5. [Despliegue](#despliegue)
+6. [Contribuir](#contribuir)
+7. [Licencia](#licencia)
+8. [Autores y reconocimientos](#autores-y-reconocimientos)
+9. [Contacto y soporte](#contacto-y-soporte)
 
 ## Instalación
 ### Requisitos previos
@@ -60,21 +59,25 @@ npm start
 
 ### ABM
 Links : 
-1. Get: es una estado de tipo `linksList` se actualiza su valor siempre que se ejecuta un metodo `ABM`.
+1. Get: es una estado de tipo `linksList` se actualiza su valor siempre que se ejecuta un metodo `ABM`. Este links es exportado por otros componentes.
 2. Post: permite agregar un enlace, tiene que recibir del formulario un `link` con los atributos completos. Este link se agrega a la lista y luego se guardar en el localstorage.
 3. PUT: actualiza los atributos del link, cuando presiona el btnEdit recibe el `id` y hace un `find` sobre la lista para retornar un `linkId`. Luego se actualiza en la lista y se hace la persistencia.
 4. DELETE: elimina un link de la lista. Cuando presion el btnDelete recibe el `linkId` y luego hace un `filter` de los links descartando el `link` por su ID.  Al final se hace la persistencia.
 
 Tags : 
-1. Get: es una estado de tipo `tagList` se actualiza su valor siempre que se ejecuta un metodo `ABM`.
+1. Get: es una estado de tipo `tagList` se actualiza su valor siempre que se ejecuta un metodo `ABM`. Este tags es exportado por otros componentes.
 2. Post: permite agregar un tag, tiene que recibir del formulario un `tagName`. Este tag se agrega a la lista y luego se guardar en el localstorage.
 3. Put:  actualiza el nombre del tag, cuando presiona el btnEdit recibe el `id` y hace un `find` sobre la lista para retornar un `tagId`. Luego se actualiza en la lista y se hace la persistencia.
 4. Delete: elimina un tag de la lista. Cuando presion el btnDelete recibe el `tagId` y luego hace un `filter` de los tags descartando el `tag` por su ID. Al final se hace la persistencia.
 
-
 ### Dependencias
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom): te permite gestionar el enrutamiento de la aplicación, permitiendo cambiar entre vistas sin recargar la web.
 - [react-hook-form](https://react-hook-form.com/docs): te permite gestionar formularios y hacer validaciones de manera fácil. 
+
+### Destacado
+* Integrar filtros: se puede filtrar por categoria `tagLink` o por nombre `nameLink` usando un `useEffect` desde el renderCard. Cuando se presiona una categoria se almacena ese valor en un estado y se utiliza para retornar una nueva `linksFilter`. Cuando se presiona el btnBuscador el valor del texto se utiliza para retornar una nueva `linksFilter`. Luego de usar algun filtro se renderiza la vista con las nuevas cards.
+* Integrar base64: se utiliza para codificar archivos en cadena de texto. Desde la vista un btn de tipo `input-file` invoca una funcion que declare, esta recibe un `file` y lo retorna como `base64`. Luego se actualiza la vista, la idea es almacenar esta en una BD remota y traer la cadena desde la `url` de la BD remota. 
+* Integrar jspdf: 
 
 
 ## Despliegue
