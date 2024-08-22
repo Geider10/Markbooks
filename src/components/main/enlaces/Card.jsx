@@ -12,8 +12,8 @@ function Site (data){
             <div className="text-center bg-gray-600 pb-2">
                 <h3 className="font-medium" >{value}</h3>
                 <div className="flex justify-center gap-2 mt-1">
-                    <Path path={url} name={"Ir"} tipo={"blank"} style={"backOne px-2 inline-block rounded-md text-gray-700"}/>
-                    <Path path={`/link/${id}`} name={"Detalles"} style={" px-2 inline-block rounded-md border"}/>
+                    <Path path={url} name={"Ver"} tipo={"blank"} style={"backOne px-2 inline-block rounded-md text-gray-700"}/>
+                    <Path path={`/enlace/${id}`} name={"Detalles"} style={" px-2 inline-block rounded-md border"}/>
                 </div>
             </div>
         </article>

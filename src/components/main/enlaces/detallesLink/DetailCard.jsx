@@ -1,4 +1,4 @@
-import Star from '../../../icons/Star';
+import Star from '../../../../icons/Star';
 import ImageUpload from './ImageUpload';
 function DetailCard({link}){
     const backColor = {backgroundColor:`${link.color}`}

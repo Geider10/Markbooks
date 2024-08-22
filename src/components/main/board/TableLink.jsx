@@ -7,7 +7,7 @@ function TableLink ({handlePutLinks,handleDeleteLinks}){
     const {links} = useContext(FilterContext); 
 
     return(
-        <div>
+        <div className="flex flex-col gap-4">
             <table className="text-center border-2">
                 <thead className=" bg-gray-500">
                     <tr>

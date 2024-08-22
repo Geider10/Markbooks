@@ -4,7 +4,7 @@ import Modal from "../form/Modal";
 import SelectTable from './SelectTable';
 import TableLink from "../board/TableLink";
 import TableCategory from "./TableCategory";
-import CategoryList from '../filters/CategoryList';
+import CategoryList from './CategoryList';
 function Board() {
     const {links,tags, postLink, putLink, deleteLink, postTag, putTag,deleteTag } = useContext(FilterContext);
     //controller render the tables and activate modal
@@ -166,7 +166,7 @@ function Board() {
         }
     }
     return (
-       <div className="flex justify-center">
+       <div className="flex justify-center ">
          <div className="centerBoard  p-2">
             <SelectTable hLinks = {handleTableTypeLin} hCategorys={handleTableTypeCat} hModalOn={handleModalOn}/>
             {modalType == "link" &&
@@ -179,7 +179,6 @@ function Board() {
             }
             {tableType == "link" ? <TableLink handlePutLinks={(e)=>handleEditTableLink(e)} handleDeleteLinks={(e)=>handleDeleteTableLink(e)} /> : <TableCategory handlePutTags={(e)=>handleEditTableTag(e)} handleDeleteTags={(e)=>handleDeleteTableTag(e)} />}
             {/* descargar todos los enlaces como pdf */}
-       
         </div>
        </div>
     )

@@ -1,5 +1,5 @@
 import {useContext, useState} from 'react';
-import {FilterContext} from '../../../context/dataContext';
+import {FilterContext} from '../../../../context/dataContext';
 function ImageUpload ({imgId,imgValue}){
     const {changeImage} = useContext(FilterContext)
     const [image,setImage] = useState(imgValue)
@@ -30,7 +30,7 @@ function ImageUpload ({imgId,imgValue}){
                 <img className='container_img_perfil' src={image || "/photoUpload.webp"} alt={image ? 'Imagen cargada desde el dispositivo':'No hay imagen cargada'}></img>
             </div>
             <div className='relative inline-block mt-2'>
-                <label htmlFor="file-input" className='custom_file_label'>Subir archivo </label>
+                <label htmlFor="file-input" className='custom_file_label'>Subir imagen </label>
                 <input id="file-input" type="file" accept="image/*"  onChange={(e)=> handleImgUpload(e)}/>
             </div>
         </div>

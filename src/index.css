@@ -65,11 +65,10 @@ body {
   background-color: #faba31;
 }
 .centerBoard{
-  width: 60%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-content: center;
-  /* align-content: center; */
 }
 .tableLink{
   font-weight: bold;

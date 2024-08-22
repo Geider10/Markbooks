@@ -1,7 +1,7 @@
 import { useContext} from "react";
 import { FilterContext } from "../../../context/dataContext";
 import Tag from "./Tag"
-function RenderTag() {
+function SelectTag() {
     const {tags,changeTagLinks,changeTypeFilter} = useContext(FilterContext);
     const handleFilterTag = (e)=>{
         const filterName = "category"
@@ -19,4 +19,4 @@ function RenderTag() {
         </section>
     )
 }
-export default RenderTag;
+export default SelectTag;

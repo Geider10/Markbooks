@@ -1,11 +1,13 @@
 import {jsPDF} from 'jspdf';
 import {FilterContext} from '../../../context/dataContext';
 import {useContext} from 'react';
+import Download from '../../../icons/Download';
 function BtnPdf(){
     const {links} = useContext(FilterContext)
 
     const parsearLinks = ()=>{
-        const newLinks = links.map(link=>{
+        const list = links
+        const newLinks = list.map(link=>{
             if(typeof(link.id) != "string" || typeof(link.star) != "string"){
                 let idStr= link.id.toString()
                 let startStr = link.star.toString() 
@@ -53,7 +55,7 @@ function BtnPdf(){
     }
     return (
         <div>
-            <button onClick={createPdf} className='border-2'> Descargar</button>
+            <button onClick={createPdf} className=' p-1 rounded-md bg-sky-500 flex gap-1 items-center' > PDF <Download/></button>
         </div>
     )
 }
