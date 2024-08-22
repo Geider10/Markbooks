@@ -55,7 +55,7 @@ function BtnPdf(){
     }
     return (
         <div>
-            <button onClick={createPdf} className=' p-1 rounded-md bg-sky-500 flex gap-1 items-center' > PDF <Download/></button>
+            <button onClick={createPdf} className=' py-1 px-2 rounded-md bg-sky-500 flex gap-1 items-center' > PDF <Download/></button>
         </div>
     )
 }
