@@ -133,14 +133,13 @@ function Board() {
     }
     const handleSendModalTag = () => {
         let typeMetod = metodoTag;
-        if (typeMetod == "post" && valueTag != "") {
+        if (typeMetod == "post" && valueTag !== "") {
             postTag(valueTag);
             handleModalOff();
             setBtnAction(true)
             msgSuccess("Operación exitosa")
-
         }
-        else if (typeMetod == "put" && valueTag != "") {
+        else if (typeMetod == "put" && valueTag !== "") {
             putTag(tagId, valueTag);
             handleModalOff();
             setBtnAction(true)
@@ -187,8 +186,9 @@ function Board() {
                 <Modal url={false} name={!editTag ?"Crear categoria" : "Editar categoria"} btnName={"Confirmar"} text={valueTag}  change={handleGetValueTag} submit={handleSendModalTag}  close={handleModalOff} > </Modal>
             }
             {tableType == "link" ? <TableLink handlePutLinks={(e)=>handleEditTableLink(e)} handleDeleteLinks={(e)=>handleDeleteTableLink(e)} /> : <TableCategory handlePutTags={(e)=>handleEditTableTag(e)} handleDeleteTags={(e)=>handleDeleteTableTag(e)} />}
-            <ToastContainer/>
         </div>
+        <ToastContainer/>
+
        </div>
     )
 }

@@ -65,6 +65,7 @@ export const  FilterProvider= ({children})=>{
             name: link,
             url: url,
             category: category,
+            star: false,
             description : description,
             color : createColor(),
             img : "",

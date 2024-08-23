@@ -1,10 +1,9 @@
 import {jsPDF} from 'jspdf';
 import {FilterContext} from '../../../context/dataContext';
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import Download from '../../../icons/Download';
 function BtnPdf(){
     const {links} = useContext(FilterContext)
-
     const parsearLinks = ()=>{
         const list = links
         const newLinks = list.map(link=>{
@@ -19,36 +18,35 @@ function BtnPdf(){
     }
     const createPdf=()=>{
         const doc = new jsPDF()
-        let x = 10
-        let y1 =40, y2=50, y3=60
-
+        let y1 =40
+        let sizePdf = doc.internal.pageSize.getWidth()
+        let maxLineWidth = sizePdf - 40
+        let pageNumber = 1
         doc.text("LinkBook",90,20)
-        parsearLinks().forEach(link => {
-            // console.log(y1);
-            if(y1 <= 240){
-                // console.log("page 1");
-                doc.text("Nombre:" + `${link.name}`, x, y1)
-                doc.text("Url:" + `${link.url}`, x, y2)
-                doc.text("Categoria:" + `${link.category}`, x, y3)
-                doc.line(10,y3 + 5,200,y3 + 5)
-                y1+=40
-                y2+=40
-                y3+=40
-                if(y1 == 240){//se ejecuta una vez, crea una pagina y formatea las coordenadas
+        parsearLinks().forEach((link) => {
+            if(y1 <= 250){
+                doc.setPage(pageNumber)
+                let split = doc.splitTextToSize(link.url,maxLineWidth)//retorna arrat de str
+                // console.log(split);
+                doc.text("Nombre:" + `${link.name}`, 10, y1)
+                y1+=10
+                split.forEach((line,index)=>{
+                    if(index == 0){
+                        doc.text("Url:" + `${line}`, 10, y1 )
+                    }
+                    else{
+                        doc.text(`${line}`, 10, y1 )
+                    }
+                    y1+=10
+                })
+                doc.text("Categoria:" + `${link.category}`, 10, y1)
+                doc.line(10,y1 + 3,200,y1 + 3)
+                y1+=10
+                if(y1 == 250){//se ejecuta una vez, crea una pagina y formatea las coordenadas
                     doc.addPage()
-                    y1 = 40, y2 =  50, y3 = 60
+                    y1 = 40
+                    pageNumber++
                 }
-            }
-            else if(y1 > 240){
-                doc.setPage(2)
-                // console.log("page 2");
-                doc.text("Nombre:" + `${link.name}`, x, y1)
-                doc.text("Url:" + `${link.url}`, x, y2)
-                doc.text("Categoria:" + `${link.category}`, x, y3)
-                doc.line(10,y3 + 5,200,y3 + 5)
-                y1+=40
-                y2+=40
-                y3+=40
             }
         });
         doc.save('LinkBook.pdf')
