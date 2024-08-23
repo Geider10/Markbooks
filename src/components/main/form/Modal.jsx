@@ -1,11 +1,9 @@
 import Button from "./Button";
+
 function Modal({ name, children, text, submit, close, change, btnName, url, nameUrl, changeUrl, nameDescription, changeDescription}) {
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-    }
     return (
         <article className="modalCenter bg-gray-600 px-4 py-3 rounded-lg">
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="flex justify-between mb-2">
                     <h3>{name}</h3>
                     <span onClick={close} className="cursor-pointer "> X</span>
@@ -16,7 +14,8 @@ function Modal({ name, children, text, submit, close, change, btnName, url, name
                         value={text}
                         onChange={change}
                         placeholder="Ingresar nombre"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        />
                     {url &&
                         <input
                         type="text"

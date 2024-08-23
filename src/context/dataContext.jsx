@@ -43,8 +43,8 @@ export const  FilterProvider= ({children})=>{
     //enlaces controller
     const linkStorage = JSON.parse(window.localStorage.getItem("links"))|| linkModel;
     const [links, setLinks] = useState(linkStorage);
-    const [linksTag, setLinksTag] = useState("General");
-    const [typeFilter, setTypeFilter] = useState("category")
+    const [linksTag, setLinksTag] = useState("General");//se filtran por default en General los links 
+    const [typeFilter, setTypeFilter] = useState("category")//indica si se filtra por categoria o buscador
 
     const createColor = ()=>{
         const lengthColores = coloresList.length

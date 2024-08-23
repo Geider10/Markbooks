@@ -51,6 +51,7 @@ function Board() {
             setValueLink("");
             setUrl("");
             setCategory("");
+            setDescription("")
         }
         else if(tableType == "tag"){
             setEditTag(false);
@@ -92,7 +93,6 @@ function Board() {
            handleModalOff();
            setBtnAction(true)
         }
-     
     }
     //open modal for edit
     const handleEditTableLink = (e) => {
@@ -110,7 +110,6 @@ function Board() {
             setUrl(linkFind.url);
             setDescription(linkFind.description)
             setBtnAction(false)
-            console.log(linkFind);
         }
     }
     const handleDeleteTableLink=(e)=>{

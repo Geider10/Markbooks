@@ -16,9 +16,9 @@ function Searching (){
         changeTagLinks(keyword)
     }
     return(
-        <div className="w-64 flex gap-4" >
+        <div className="w-72 flex gap-4" >
             <input type="search"
-                className="inputText"
+                className="inputText border-2"
                 onChange={handleText}
                 value = {keyword}
                 placeholder="Name the link..."
