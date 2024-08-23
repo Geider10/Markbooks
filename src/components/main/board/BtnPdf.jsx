@@ -25,23 +25,39 @@ function BtnPdf(){
         doc.text("LinkBook",90,20)
         parsearLinks().forEach((link) => {
             if(y1 <= 250){
+                doc.line(10,y1 - 6,200,y1 - 6)
                 doc.setPage(pageNumber)
-                let split = doc.splitTextToSize(link.url,maxLineWidth)//retorna arrat de str
-                // console.log(split);
-                doc.text("Nombre:" + `${link.name}`, 10, y1)
-                y1+=10
-                split.forEach((line,index)=>{
+                let nameSplit = doc.splitTextToSize(link.name,maxLineWidth)//retorna array de str
+                let urlSplit = doc.splitTextToSize(link.url,maxLineWidth)
+                let categorySplit = doc.splitTextToSize(link.category,maxLineWidth)
+
+                nameSplit.forEach((value,index)=>{
                     if(index == 0){
-                        doc.text("Url:" + `${line}`, 10, y1 )
+                        doc.text("Nombre:" + `${value}`, 10, y1 )
                     }
                     else{
-                        doc.text(`${line}`, 10, y1 )
+                        doc.text(`${value}`, 10, y1 )
                     }
                     y1+=10
                 })
-                doc.text("Categoria:" + `${link.category}`, 10, y1)
-                doc.line(10,y1 + 3,200,y1 + 3)
-                y1+=10
+                urlSplit.forEach((value,index)=>{
+                    if(index == 0){
+                        doc.text("Url:" + `${value}`, 10, y1 )
+                    }
+                    else{
+                        doc.text(`${value}`, 10, y1 )
+                    }
+                    y1+=10
+                })
+                categorySplit.forEach((value,index)=>{
+                    if(index == 0){
+                        doc.text("Categoria:" + `${value}`, 10, y1 )
+                    }
+                    else{
+                        doc.text(`${value}`, 10, y1 )
+                    }
+                    y1+=10
+                })
                 if(y1 == 250){//se ejecuta una vez, crea una pagina y formatea las coordenadas
                     doc.addPage()
                     y1 = 40

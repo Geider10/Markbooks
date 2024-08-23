@@ -3,7 +3,7 @@ import Button from "./Button";
 function Modal({ name, children, text, submit, close, change, btnName, url, nameUrl, changeUrl, nameDescription, changeDescription}) {
     return (
         <article className="modalCenter bg-gray-600 px-4 py-3 rounded-lg">
-            <form>
+            <form onSubmit={(e)=> e.preventDefault()} >
                 <div className="flex justify-between mb-2">
                     <h3>{name}</h3>
                     <span onClick={close} className="cursor-pointer "> X</span>

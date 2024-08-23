@@ -84,17 +84,21 @@ function Board() {
     //utiliza el context para agregar o eliminar link del localstorage
     const handleSendModalLink = () => {
        const typeMetodo = metodoLink;
-        if (typeMetodo == "post" && valueLink !== "" && url !== "" && category !== "" && description !== "") {
+        if (typeMetodo == "post" && valueLink != "" && url != "" && category != "" && description != "") {
            postLink(valueLink, url, category, description);
            handleModalOff();
            setBtnAction(true)
            msgSuccess("Operación exitosa")
+           console.log("se envia");
+
         }
-        else if (typeMetodo == "put" && valueLink !== "" && url !== "" && category !== "" && description !== "") {
+        else if (typeMetodo == "put" && valueLink != "" && url != "" && category != "" && description != "") {
            putLink(linkId, valueLink, url, category, description);
            handleModalOff();
            setBtnAction(true)
            msgSuccess("Operación exitosa")
+           console.log("se envia");
+
         }
     }
     //open modal for edit

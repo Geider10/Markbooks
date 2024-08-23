@@ -37,6 +37,23 @@ body {
   max-width: 400px; /* Limita el ancho máximo del modal */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo gris oscuro */
+  z-index: 999; /* Debe estar justo debajo del modal */
+  display: none; /* Inicialmente oculto */
+}
+.modalActive .modalOverlay {
+  display: block;
+}
+
+/* .modalActive .modalCenter {
+  display: block;
+} */
 .cardCenter{
   display: flex;
   flex-wrap: wrap;
