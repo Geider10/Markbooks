@@ -1,16 +1,17 @@
 import { useState, useContext} from "react";
 import { FilterContext } from "../../../context/dataContext";
+import {ToastContainer} from 'react-toastify';
 import Modal from "../form/Modal";
 import SelectTable from './SelectTable';
 import TableLink from "../board/TableLink";
 import TableCategory from "./TableCategory";
 import CategoryList from './CategoryList';
 function Board() {
-    const {links,tags, postLink, putLink, deleteLink, postTag, putTag,deleteTag } = useContext(FilterContext);
+    const {links,tags, postLink, putLink, deleteLink, postTag, putTag,deleteTag,msgSuccess } = useContext(FilterContext);
     //controller render the tables and activate modal
     const [tableType, setTableType] = useState("link");//segun su valor render x table
     const [modalType, setModalType] = useState("")//segun su valor activa x modal
-    const [btnAction, setBtnAction] = useState(true)
+    const [btnAction, setBtnAction] = useState(true)//true se ejecutan los botones y en false no
     const addStyleLink = (e) => {
         window.document.querySelector(".tableLinkActive")?.classList.remove("tableLinkActive");
         e.target.classList.add("tableLinkActive");
@@ -87,11 +88,13 @@ function Board() {
            postLink(valueLink, url, category, description);
            handleModalOff();
            setBtnAction(true)
+           msgSuccess("Operación exitosa")
         }
         else if (typeMetodo == "put" && valueLink !== "" && url !== "" && category !== "" && description !== "") {
            putLink(linkId, valueLink, url, category, description);
            handleModalOff();
            setBtnAction(true)
+           msgSuccess("Operación exitosa")
         }
     }
     //open modal for edit
@@ -117,6 +120,7 @@ function Board() {
         if(btn){
             const id = e.currentTarget.id || e.target.id
             deleteLink(id)
+            msgSuccess("Operación exitosa")
         }
     }
     //attributes && method the tags
@@ -133,11 +137,14 @@ function Board() {
             postTag(valueTag);
             handleModalOff();
             setBtnAction(true)
+            msgSuccess("Operación exitosa")
+
         }
         else if (typeMetod == "put" && valueTag != "") {
             putTag(tagId, valueTag);
             handleModalOff();
             setBtnAction(true)
+            msgSuccess("Operación exitosa")
         }
     }
     const handleEditTableTag = (e) => {
@@ -161,7 +168,10 @@ function Board() {
         if(btn){
             const idTag = e.currentTarget.id || e.target.id
             const tagFind = tags.find(t => t.id == idTag)
-            tagFind.name != "General" &&  deleteTag(tagFind.id);
+            if(tagFind.name != "General"){
+                deleteTag(tagFind.id)
+                msgSuccess("Operación exitosa")
+            }
         }
     }
     return (
@@ -177,7 +187,7 @@ function Board() {
                 <Modal url={false} name={!editTag ?"Crear categoria" : "Editar categoria"} btnName={"Confirmar"} text={valueTag}  change={handleGetValueTag} submit={handleSendModalTag}  close={handleModalOff} > </Modal>
             }
             {tableType == "link" ? <TableLink handlePutLinks={(e)=>handleEditTableLink(e)} handleDeleteLinks={(e)=>handleDeleteTableLink(e)} /> : <TableCategory handlePutTags={(e)=>handleEditTableTag(e)} handleDeleteTags={(e)=>handleDeleteTableTag(e)} />}
-            {/* descargar todos los enlaces como pdf */}
+            <ToastContainer/>
         </div>
        </div>
     )

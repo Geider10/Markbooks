@@ -2,6 +2,8 @@ import { createContext,useState} from "react";
 import tagModel from '../models/tag.model.json';
 import linkModel from '../models/link.model.json';
 import coloresList from '../models/colores.json';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //Este es el que tenemos que consumir
 export const FilterContext = createContext();
 
@@ -116,13 +118,35 @@ export const  FilterProvider= ({children})=>{
         // localStorage.setItem('links',JSON.stringify(filterLinks))
         // setLinks(filterLinks)
     }
+    const msgError = (msg) =>
+        toast.error(msg, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+    });
+    const msgSuccess = (msg) =>
+        toast.success(msg, {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+    });
     return(
         <FilterContext.Provider value={{
             tags, postTag,putTag,deleteTag,
             links,postLink,putLink,deleteLink,changeStar,
             linksTag,changeTagLinks,
-            typeFilter,changeTypeFilter,
-            changeImage
+            typeFilter,changeTypeFilter,changeImage,
+            msgError,msgSuccess
             }}>
            {children}
         </FilterContext.Provider>

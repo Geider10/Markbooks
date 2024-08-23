@@ -22,10 +22,10 @@ function TableLink ({handlePutLinks,handleDeleteLinks}){
                             <td>{link.name}</td>
                             <td>{link.category}</td>
                             <td className="flex gap-2 justify-center">
-                            <span className="bg-sky-500  rounded-md p-1">
+                            <span className="bg-sky-500  rounded-md p-1 cursor-pointer">
                                 <Edit tId={link.id} tClick={handlePutLinks}/>
                             </span>
-                            <span className="bg-red-500  rounded-md p-1">
+                            <span className="bg-red-500  rounded-md p-1 cursor-pointer">
                                 <Trash tId={link.id} tClick={handleDeleteLinks}/>
                             </span>
                             </td>
