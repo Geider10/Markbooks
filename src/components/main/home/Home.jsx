@@ -3,10 +3,10 @@ import Features from './Features';
 function Home (){
    
     return(
-        <>
-        <Logo/>
-        <Features/>
-        </>
+        <div className="px-6 sm:px-4">
+            <Logo/>
+            <Features/>
+        </div>
     )
 }
 export default Home;

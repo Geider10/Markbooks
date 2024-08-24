@@ -25,7 +25,7 @@ function ImageUpload ({imgId,imgValue}){
         changeImage(imgId, imgValue)
     }   
     return (
-        <div className='text-center h-full'>
+        <div className='text-center h-[200px] sm:h-[150px]'>
             <div className='text-center h-[85%]'>
                 <img className='container_img_perfil' src={image || "/photoUpload.webp"} alt={image ? 'Imagen cargada desde el dispositivo':'No hay imagen cargada'}></img>
             </div>

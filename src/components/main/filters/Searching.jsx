@@ -16,7 +16,7 @@ function Searching (){
         changeTagLinks(keyword)
     }
     return(
-        <div className="w-72 flex gap-4" >
+        <div className="flex gap-4 px-6 sm:px-4" >
             <input type="search"
                 className="inputText border-2"
                 onChange={handleText}

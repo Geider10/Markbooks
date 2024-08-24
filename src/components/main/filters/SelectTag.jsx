@@ -10,13 +10,11 @@ function SelectTag() {
         changeTagLinks(tagName)
     }
     return (
-        <section className="flex justify-center items-center mx-8">
-            <div className="flex gap-2 items-center">
+        <div className="flex flex-wrap gap-x-4 gap-y-2 items-center px-6 sm:px-4 gap-x-2 justify-center ">
                 {tags && tags.map(t => (
                     <Tag key={t.id} name={t.name} pId={t.id} click={handleFilterTag}/>
                 ))}
-            </div>
-        </section>
+        </div>
     )
 }
 export default SelectTag;

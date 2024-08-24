@@ -17,12 +17,14 @@ function RenderSite (){
         }
     },[typeFilter,linksTag])
     return(
-        <section className="cardCenter" >
+      <div className="flex justify-center mb-12 sm:mb-8">
+            <section className=" max-w-[800px] flex flex-wrap justify-center gap-4  " >
             {link && link.map((l)=>(
                 <Card key={l.id} value={l.name} url={l.url} category={l.category} id={l.id} star={l.star} img={l.img} color={l.color}/>
             ))}
             {link.length <= 0 && <NoCard/> }
-        </section>
+            </section>
+      </div>
     )
 }
 export default RenderSite;
