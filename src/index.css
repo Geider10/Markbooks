@@ -103,7 +103,6 @@ body {
   height: 100vh;
 }
 
-
 #file-input {
   position: absolute;
   opacity: 0;
@@ -111,6 +110,7 @@ body {
   height: 0;
   z-index: -1;
 }
-.test_back_color{
-  background-color: #4169E1;
+
+.tagLinkActive{
+  background-color: #d82012;
 }
