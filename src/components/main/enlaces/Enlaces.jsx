@@ -4,7 +4,7 @@ import SelectTag from '../filters/SelectTag';
 function Enlaces (){
     return(
         <>
-            <div className="flex flex-col items-center gap-4 my-12 sm:my-8">
+            <div className="flex flex-col items-center gap-4 mt-12 sm:mt-8">
                 <Searching/>
                 <SelectTag/>
             </div>

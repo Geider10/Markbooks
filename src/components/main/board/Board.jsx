@@ -178,8 +178,8 @@ function Board() {
         }
     }
     return (
-       <div className="flex justify-center ">
-         <div className="centerBoard  p-2">
+       <div className=" mx-6  mt-12 sm:mt-8">
+         <div className="centerBoard">
             <SelectTable hLinks = {handleTableTypeLin} hCategorys={handleTableTypeCat} hModalOn={handleModalOn}/>
             {modalType == "link" &&
                 <Modal url={true} name={!editLink ? "Crear link" : "Editar Link"} btnName={"Confirmar"}text={valueLink}  change={handleGetValueL} submit={handleSendModalLink} close={handleModalOff} nameUrl={url}  changeUrl={handleGetUrlL} nameDescription={description} changeDescription={handleGetDescriptonL}>

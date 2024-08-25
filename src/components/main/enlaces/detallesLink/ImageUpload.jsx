@@ -1,5 +1,6 @@
 import {useContext, useState} from 'react';
 import {FilterContext} from '../../../../context/dataContext';
+import Upload from '../../../../icons/Upload';
 function ImageUpload ({imgId,imgValue}){
     const {changeImage} = useContext(FilterContext)
     const [image,setImage] = useState(imgValue)
@@ -25,12 +26,13 @@ function ImageUpload ({imgId,imgValue}){
         changeImage(imgId, imgValue)
     }   
     return (
-        <div className='text-center h-[200px] sm:h-[150px]'>
-            <div className='text-center h-[85%]'>
-                <img className='container_img_perfil' src={image || "/photoUpload.webp"} alt={image ? 'Imagen cargada desde el dispositivo':'No hay imagen cargada'}></img>
+        <div className='text-center h-full border-2 sm:h-[150px]'>
+            <div className=' h-[80%] sm:h-[75%]'>
+                <img className='h-full w-full' src={image || "/photoUpload.webp"} alt={image ? 'Imagen cargada desde el dispositivo':'No hay imagen cargada'}></img>
             </div>
-            <div className='relative inline-block mt-2'>
-                <label htmlFor="file-input" className='custom_file_label'>Subir imagen </label>
+            <div className=' mt-2 h-auto inline-flex justify-center items-center border-2 px-2 rounded-md cursor-pointer'>
+                <label htmlFor="file-input">Imagen</label>
+                <Upload/>
                 <input id="file-input" type="file" accept="image/*"  onChange={(e)=> handleImgUpload(e)}/>
             </div>
         </div>

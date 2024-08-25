@@ -14,7 +14,7 @@ function ContentDetail(){
     },[id])
     return (
         <div className="centerContent">
-        <Path path={"/enlaces"} name={<ArrowLeft/>} style={"py-1 px-2 rounded-md relative right-64  bottom-4 backOne text-gray-700"}/>
+        {/* <Path path={"/enlaces"} name={<ArrowLeft/>} style={"py-1 px-2 rounded-md relative right-64  bottom-4 backOne text-gray-700"}/> */}
         {link && <DetailCard link={link}/>}
        </div>
     )

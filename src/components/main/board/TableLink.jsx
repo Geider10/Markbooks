@@ -8,24 +8,24 @@ function TableLink ({handlePutLinks,handleDeleteLinks}){
 
     return(
         <div className="flex flex-col gap-4">
-            <table className="text-center border-2">
-                <thead className=" bg-gray-500">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Categoria</th>
-                        <th>Modificar</th>
+            <table className="text-center border-2 h-full ">
+                <thead  className=" bg-gray-500 ">
+                    <tr >
+                        <th className="p-1">Nombre</th>
+                        <th className="p-1 sm:hidden">Categoria</th>
+                        <th className="p-1">Modificar</th>
                     </tr>
                 </thead>
                 <tbody>
                     {links && links.map(link=>(
-                        <tr key={link.id}>
+                        <tr key={link.id} className="border-2">
                             <td>{link.name}</td>
-                            <td>{link.category}</td>
-                            <td className="flex gap-2 justify-center">
-                            <span className="bg-sky-500  rounded-md p-1 cursor-pointer">
+                            <td className="sm:hidden">{link.category}</td>
+                            <td className="p-0 flex justify-center items-center h-full py-1 gap-2">
+                            <span className="bg-sky-500  rounded-md p-1 cursor-pointer inline-block ">
                                 <Edit tId={link.id} tClick={handlePutLinks}/>
                             </span>
-                            <span className="bg-red-500  rounded-md p-1 cursor-pointer">
+                            <span className="bg-red-500  rounded-md p-1 cursor-pointer inline-block">
                                 <Trash tId={link.id} tClick={handleDeleteLinks}/>
                             </span>
                             </td>

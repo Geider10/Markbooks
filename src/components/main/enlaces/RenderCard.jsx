@@ -17,7 +17,7 @@ function RenderSite (){
         }
     },[typeFilter,linksTag])
     return(
-      <div className="flex justify-center mb-12 sm:mb-8">
+      <div className="flex justify-center my-10 sm:my-6">
             <section className=" max-w-[800px] flex flex-wrap justify-center gap-4  " >
             {link && link.map((l)=>(
                 <Card key={l.id} value={l.name} url={l.url} category={l.category} id={l.id} star={l.star} img={l.img} color={l.color}/>
