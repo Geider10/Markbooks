@@ -83,7 +83,7 @@ Tags :
 
 ## Despliegue
 ### Link del deploy
-Muy pronto
+[LinkBook](https://linkbook-mvp.vercel.app/)
 
 ## Contribuir
 ### Guía de contribución
