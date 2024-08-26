@@ -72,7 +72,6 @@ Tags :
 
 ### Dependencias
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom): te permite gestionar el enrutamiento de la aplicación, permitiendo cambiar entre vistas sin recargar la web.
-- [react-hook-form](https://react-hook-form.com/docs): te permite gestionar formularios y hacer validaciones de manera fácil. 
 - [react-toastify](https://fkhadra.github.io/react-toastify/introduction/): permite mostrar notificaciones personalizables tipo toast en aplicaciones React.
 - [jsdpdf](https://raw.githack.com/MrRio/jsPDF/master/docs/index.html): permite generar y descargar archivos PDF directamente desde el navegador con JavaScript.
 

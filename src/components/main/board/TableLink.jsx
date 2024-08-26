@@ -34,7 +34,7 @@ function TableLink ({handlePutLinks,handleDeleteLinks}){
                     }
                 </tbody>
             </table>
-            <BtnPdf/>
+            {links.length >= 1 &&  <BtnPdf/>}
         </div>
     )
 }

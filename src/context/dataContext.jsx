@@ -43,7 +43,7 @@ export const  FilterProvider= ({children})=>{
         localStorage.setItem("tags",JSON.stringify(newTags));
     }
     //enlaces controller
-    const linkStorage = JSON.parse(window.localStorage.getItem("links"))|| linkModel;
+    const linkStorage = JSON.parse(window.localStorage.getItem("links")) || [] ;
     const [links, setLinks] = useState(linkStorage);
     const [linksTag, setLinksTag] = useState("General");//se filtran por default en General los links 
     const [typeFilter, setTypeFilter] = useState("category")//indica si se filtra por categoria o buscador

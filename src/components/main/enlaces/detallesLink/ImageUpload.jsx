@@ -26,12 +26,12 @@ function ImageUpload ({imgId,imgValue}){
         changeImage(imgId, imgValue)
     }   
     return (
-        <div className='text-center h-full border-2 sm:h-[150px]'>
+        <div className='text-center h-full sm:h-[150px]'>
             <div className=' h-[80%] sm:h-[75%]'>
                 <img className='h-full w-full' src={image || "/photoUpload.webp"} alt={image ? 'Imagen cargada desde el dispositivo':'No hay imagen cargada'}></img>
             </div>
-            <div className=' mt-2 h-auto inline-flex justify-center items-center border-2 px-2 rounded-md cursor-pointer'>
-                <label htmlFor="file-input">Imagen</label>
+            <div className=' mt-2 h-auto inline-flex justify-center items-center border-2 px-2 rounded-md gap-1  cursor-pointer'>
+                <label htmlFor="file-input" className=' cursor-pointer'>Imagen</label>
                 <Upload/>
                 <input id="file-input" type="file" accept="image/*"  onChange={(e)=> handleImgUpload(e)}/>
             </div>
