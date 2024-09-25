@@ -89,16 +89,12 @@ function Board() {
            handleModalOff();
            setBtnAction(true)
            msgSuccess("Operación exitosa")
-           console.log("se envia");
-
         }
         else if (typeMetodo == "put" && valueLink != "" && url != "" && category != "" && description != "") {
            putLink(linkId, valueLink, url, category, description);
            handleModalOff();
            setBtnAction(true)
            msgSuccess("Operación exitosa")
-           console.log("se envia");
-
         }
     }
     //open modal for edit
@@ -189,7 +185,7 @@ function Board() {
             {modalType == "tag" &&
                 <Modal url={false} name={!editTag ?"Crear categoria" : "Editar categoria"} btnName={"Confirmar"} text={valueTag}  change={handleGetValueTag} submit={handleSendModalTag}  close={handleModalOff} > </Modal>
             }
-            {tableType == "link" ? <TableLink handlePutLinks={(e)=>handleEditTableLink(e)} handleDeleteLinks={(e)=>handleDeleteTableLink(e)} /> : <TableCategory handlePutTags={(e)=>handleEditTableTag(e)} handleDeleteTags={(e)=>handleDeleteTableTag(e)} />}
+            {tableType == "tag" ? <TableCategory handlePutTags={(e)=>handleEditTableTag(e)} handleDeleteTags={(e)=>handleDeleteTableTag(e)} /> : <TableLink handlePutLinks={(e)=>handleEditTableLink(e)} handleDeleteLinks={(e)=>handleDeleteTableLink(e)} /> }
         </div>
         <ToastContainer/>
 
