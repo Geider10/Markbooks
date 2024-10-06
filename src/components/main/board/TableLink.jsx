@@ -9,7 +9,7 @@ function TableLink ({handlePutLinks,handleDeleteLinks}){
     return(
         <div>
             {links.length == 0 ?
-            <NoCard/> 
+            <NoCard title={'¡Oops!, la lista esta vacia.'} subtititle={'Agregue un enlace y vuelva a intentarlo.'} img={'/book_3.webp'}/> 
             :<div className="flex flex-col gap-4">
                 <table className="text-center border-2 h-full ">
                     <thead  className=" bg-gray-500 ">

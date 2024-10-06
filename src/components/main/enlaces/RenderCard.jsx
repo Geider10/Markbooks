@@ -22,7 +22,7 @@ function RenderSite (){
             {link && link.map((l)=>(
                 <Card key={l.id} value={l.name} url={l.url} category={l.category} id={l.id} star={l.star} img={l.img} color={l.color}/>
             ))}
-            {link.length <= 0 && <NoCard/> }
+            {link.length <= 0 && <NoCard title={'¡Oops!, No hay resultados.'} subtititle={'Agregue un enlace y vuelva a intentarlo.'} img={'/book_2.webp'}/> }
             </section>
       </div>
     )
