@@ -1,6 +1,6 @@
 function NoCard ({title, subtititle, img}){
     return (
-        <div className=" px-4 py-3 rounded-lg bg-gray-600 sm:mx-4" >
+        <div className=" px-4 py-3 rounded-xl bg-slate-600 sm:mx-4" >
             <h2>{title}</h2>
             <p>{subtititle}</p>
             <div className="flex justify-center ">
